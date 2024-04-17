@@ -1,6 +1,6 @@
 import pandas as pd
 from Bio import SeqIO
-ffrom Bio.Align.Applications import ClustalOmegaCommandline
+from Bio.Align.Applications import ClustalOmegaCommandline
 from Bio import AlignIO
 
 #  Cluster Output Files
