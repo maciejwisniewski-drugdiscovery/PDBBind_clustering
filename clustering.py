@@ -1,3 +1,5 @@
+import os.path
+
 import pandas as pd
 from Bio import SeqIO
 from Bio.Align.Applications import ClustalOmegaCommandline
@@ -5,10 +7,9 @@ from Bio import AlignIO
 
 #  Cluster Output Files
 pdbbind_proteins_fasta_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_sequences.fasta'
-clustal_align_pdbbind_proteins_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_sequences.fasta'
+clustal_biopython_distance_matrix_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_sequence_distance_matrix.txt'
 
 cd_hit_output_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_cdhit'
-biopython_similarity_matrix_filepath= '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/biopython_pdbbind_sequence_similarity_matrix.npy'
 
 # Wczytanie DataFrame'u zawierającego SMILES ligandów oraz Sekwencje AA białek kompleksów
 dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
@@ -42,4 +43,8 @@ def merged_fasta(df, protein_merged_seq_output_filepath):
 
 
 # Zapisujemy sekwencje do pliku w formacie FASTA
-SeqIO.write(protein_sequences, pdbbind_proteins_fasta_filepath, "fasta")
+if not os.path.exists(pdbbind_proteins_fasta_filepath):
+    SeqIO.write(protein_sequences, pdbbind_proteins_fasta_filepath, "fasta")
+
+clustalomega_cline = ClustalOmegaCommandline(infile=fasta_file, distmat_out=clustal_biopython_distance_matrix_filepath, auto=True, verbose=True, force=True)
+stdout, stderr = clustalomega_cline()
