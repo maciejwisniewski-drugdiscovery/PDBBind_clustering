@@ -53,7 +53,7 @@ similarity_matrix = np.zeros((len(protein_sequences), len(protein_sequences)))
 
 for i in range(len(protein_sequences)):
     for j in range(i, len(protein_sequences)):
-        print(i)
+        print(i,':',j)
         similarity_matrix[i][j] = calculate_similarity(protein_sequences[i], protein_sequences[j])
         similarity_matrix[j][i] = similarity_matrix[i][j]
 
