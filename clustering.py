@@ -47,4 +47,3 @@ if not os.path.exists(pdbbind_proteins_fasta_filepath):
     SeqIO.write(protein_sequences, pdbbind_proteins_fasta_filepath, "fasta")
 
 clustalomega_cline = ClustalOmegaCommandline(infile=pdbbind_proteins_fasta_filepath, distmat_out=clustal_biopython_distance_matrix_filepath, auto=True, verbose=True, force=True)
-stdout, stderr = clustalomega_cline()
