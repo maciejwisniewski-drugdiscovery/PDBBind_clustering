@@ -55,9 +55,8 @@ matrix = Align.substitution_matrices.load("BLOSUM62")
 
 # Funkcja do obliczania podobieństwa między dwiema sekwencjami
 def calculate_similarity(seq1, seq2):
-    alignment = pairwise2.align.globalds(seq1, seq2, matrix, -10, -0.5, score_only=True)
-    aligned_seq1, aligned_seq2, score, _, _ = alignment
-    return score / max(len(seq1), len(seq2))
+    score = pairwise2.align.globalds(seq1, seq2, matrix, -10, -0.5, score_only=True)
+    return score
 
 # Obliczanie macierzy podobieństw
 # Utwórz macierz substytucji BLOSUM62
