@@ -1,8 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=distance_matrix
-#SBATCH --nodes=38
-#SBATCH --nodelist=sr-[1-3]
-#SBATCH --cpus-per-task=1
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=38
 #SBATCH --mem=200G
 #SBATCH --time=24:00:00
 
