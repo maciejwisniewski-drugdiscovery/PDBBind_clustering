@@ -21,7 +21,7 @@ dataframe['seq'] = dataframe['seq'].str.replace(':','')
 smiles = dataframe['smiles'].tolist()
 protein_sequences=[]
 for index, row in dataframe.iterrows():
-    protein_sequences.append(SeqIO.SeqRecord(row['seq'], id=row['pdb_id'], description=row['type']))
+    protein_sequences.append(SeqIO.SeqRecord(row['seq'], id=row['pdbid'], description=row['type']))
 
 grouped_sequences = {protein_type: dataframe[dataframe['type'] == protein_type]['seq'].tolist()
                      for protein_type in dataframe['type'].unique()}
