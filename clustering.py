@@ -8,11 +8,11 @@ import numpy as np
 from scipy.cluster import hierarchy
 import matplotlib.pyplot as plt
 
+
 #  Cluster Output Files
 pdbbind_proteins_fasta_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_sequences.fasta'
-clustal_biopython_distance_matrix_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_sequence_distance_matrix.txt'
-
-cd_hit_output_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_cdhit'
+clustalo_distance_matrix_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clustalo_PDBBind_protein_sequences_distance_matrix.txt'
+cdhit_clusters_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/cdhit_PDBBind_protein_sequences_clusters.clstr'
 
 # Wczytanie DataFrame'u zawierającego SMILES ligandów oraz Sekwencje AA białek kompleksów
 dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
