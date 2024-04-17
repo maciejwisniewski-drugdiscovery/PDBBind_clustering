@@ -50,33 +50,3 @@ if not os.path.exists(pdbbind_proteins_fasta_filepath):
     SeqIO.write(protein_sequences, pdbbind_proteins_fasta_filepath, "fasta")
 
 
-# Utwórz macierz substytucji BLOSUM62
-matrix = Align.substitution_matrices.load("BLOSUM62")
-
-# Funkcja do obliczania podobieństwa między dwiema sekwencjami
-def calculate_similarity(seq1, seq2):
-    score = pairwise2.align.globalds(seq1, seq2, matrix, -2, -1, score_only=True)
-    return score
-
-# Obliczanie macierzy podobieństw
-# Utwórz macierz substytucji BLOSUM62
-
-matrix = Align.substitution_matrices.load("BLOSUM62")
-
-# Funkcja do obliczania podobieństwa między dwiema sekwencjami
-def calculate_similarity(seq1, seq2):
-    alignment = pairwise2.align.globalds(seq1, seq2, matrix, -10, -0.5)[0]
-    aligned_seq1, aligned_seq2, score, _, _ = alignment
-    return score / max(len(seq1), len(seq2))
-
-# Obliczanie macierzy podobieństw
-similarity_matrix = np.zeros((len(protein_sequences), len(protein_sequences)))
-for i in range(len(protein_sequences)):
-    for j in range(i, len(protein_sequences)):
-
-        similarity_matrix[i][j] = calculate_similarity(protein_sequences[i], protein_sequences[j])
-        similarity_matrix[j][i] = similarity_matrix[i][j]
-
-# Wyświetlanie macierzy podobieństw
-print("Similarity Matrix:")
-print(similarity_matrix)
