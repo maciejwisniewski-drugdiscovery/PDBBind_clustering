@@ -22,9 +22,7 @@ dataframe = pd.read_csv(dataframe_filepath)[1:3]
 
 dataframe['seq'] = dataframe['seq'].str.replace(':','')
 smiles = dataframe['smiles'].tolist()
-protein_sequences=[]
-for index, row in dataframe.iterrows():
-    protein_sequences.append(SeqIO.SeqRecord(row['seq'], id=row['pdbid'], description=row['type']))
+protein_sequences=dataframe['seq'].tolist()
 
 grouped_sequences = {protein_type: dataframe[dataframe['type'] == protein_type]['seq'].tolist()
                      for protein_type in dataframe['type'].unique()}
@@ -76,7 +74,8 @@ def calculate_similarity(seq1, seq2):
 similarity_matrix = np.zeros((len(protein_sequences), len(protein_sequences)))
 for i in range(len(protein_sequences)):
     for j in range(i, len(protein_sequences)):
-        similarity_matrix[i][j] = calculate_similarity(protein_sequences[i].Seq, protein_sequences[j].Seq)
+
+        similarity_matrix[i][j] = calculate_similarity(protein_sequences[i], protein_sequences[j])
         similarity_matrix[j][i] = similarity_matrix[i][j]
 
 # Wyświetlanie macierzy podobieństw
