@@ -67,7 +67,7 @@ for protein_type in protein_types:
 a=1
 
 # CD-HiT clustering
-if not os.path.exists(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequences_clusters.csv'):
+if not os.path.exists(datadir+'/Clusters/clusters/clustalo_protein_sequences_clusters.csv'):
     for i, protein_type in enumerate(protein_types):
         print(protein_type)
         protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
@@ -91,9 +91,10 @@ if not os.path.exists(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequ
 
     dataframe.drop(columns=['Unnamed: 0.2', 'Unnamed: 0.1', 'Unnamed: 0','identifier'],axis=1,inplace=True)
     print(dataframe.columns)
+
     # Save Protein Sequence Clusters:
-    dataframe.to_csv(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequences_clusters.csv')
+    dataframe.to_csv(datadir+'/Clusters/clustalo_clusters/cdhit_protein_sequences_clusters.csv')
 
 else:
-    dataframe = pd.read_csv(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequences_clusters.csv')
+    dataframe = pd.read_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv')
 
