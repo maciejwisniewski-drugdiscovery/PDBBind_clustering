@@ -5,9 +5,9 @@
 #SBATCH --mem=200G
 #SBATCH --time=24:00:00
 
-input_fasta=/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_sequences.fasta
-distant_matrix_output=/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clustalo_matrices/clustalo_PDBBind_protein_sequences_distance_matrix.txt
-output_clusters=/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clustalo_clusters/clustalo_clusters
+input_fasta=/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/fasta/ClustalO_PDBBind_proteins_sequences.fasta
+distant_matrix_output=/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/matrices/ClustalO_PDBBind_protein_sequences_distance_matrix.txt
+output_clusters=/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clusters/ClustalO_PDBBind_protein_sequences_clusters.csv
 
 cd /mnt/evafs/groups/sfglab/mwisniewski/anaconda3/bin
 . activate

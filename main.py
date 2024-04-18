@@ -97,7 +97,7 @@ if not os.path.exists(datadir+'/Clusters/clusters/clustalo_protein_sequences_clu
     dataframe.to_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv')
     # Generate Protein Fasta File for ClustalO
     generate_proteins_fasta(dataframe,
-                            datadir + '/Clusters/fasta/clustalo_PDBBind_proteins_sequences.fasta',
+                            datadir + '/Clusters/fasta/ClustalO_PDBBind_proteins_sequences.fasta',
                             protein_type_column='cluster')
 else:
     dataframe = pd.read_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv')
