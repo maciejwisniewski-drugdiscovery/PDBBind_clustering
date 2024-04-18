@@ -2,11 +2,8 @@ import os.path
 
 from Bio import SeqIO
 import pandas as pd
-import seaborn as sns
-from Bio import pairwise2, Align
-import numpy as np
-from scipy.cluster import hierarchy
-import matplotlib.pyplot as plt
+from Bio.SeqIO import SeqRecord
+from Bio.Seq import Seq
 
 
 #  Cluster Output Files
