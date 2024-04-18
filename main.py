@@ -71,7 +71,7 @@ for i, protein_type in enumerate(protein_types):
 
     protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
     protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
-    protein_type_clusters.drop(['size', 'identity'])
+    protein_type_clusters.drop(columns=['size', 'identity'])
 
     print(protein_type_clusters)
 
