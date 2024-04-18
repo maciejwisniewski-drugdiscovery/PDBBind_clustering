@@ -6,14 +6,15 @@ from Bio.SeqIO import SeqRecord
 from Bio.Seq import Seq
 from Bio import SeqIO
 
-#from pycdhit import cd_hit, read_clstr
+from pycdhit import cd_hit, read_clstr
 
+# Filepath
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/'
+cd_hit_directory = '/home2/faculty/mwisniewski/Software/cd-hit-v4.8.1-2019-0228/'
+
 
 #  Load Raw PDBBind CSV
 raw_dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
-#raw_dataframe_filepath='/Users/maciejwisniewski/data/PDBBind/LP_PDBBind.csv'
-
 raw_dataframe = pd.read_csv(raw_dataframe_filepath)
 
 
@@ -39,6 +40,11 @@ def generate_proteins_fasta(df, proteins_fasta_filepath,pdb_id_column='pdbid',pr
         protein_records.append(protein_seq_record)
 
     SeqIO.write(protein_records, proteins_fasta_filepath, "fasta")
+def cluster_proteins_fasta(proteins_fasta_filepath, cd_hit_directory=cd_hit_directory):
+    cdhit = CDHIT(prog="cd-hit", path=cd_hit_directory)
+    df_in = read_fasta(proteins_fasta_filepath)
+    df_out, df_clstr = cdhit.set_options(c=0.95, d=0, n=5).cluster()
+    return df_clstr
 
 
 
@@ -55,4 +61,15 @@ for protein_type in protein_types:
         print(protein_type,' - Done')
     else:
         print(protein_type,' - Already exists')
+
 a=1
+
+# CD-HiT clustering
+for protein_type in protein_types:
+    protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
+
+    protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
+    protein_type_clusters.rename(columns={'cluster': 'protein_sequence_cluster'}, inplace=True)
+
+    dataframe = pd.merge(raw_dataframe,protein_type_clusters,on='pdbid',how='outer')
+    print(dataframe)

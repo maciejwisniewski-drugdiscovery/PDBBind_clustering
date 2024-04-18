@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="cdhit">
-      <change afterPath="$PROJECT_DIR$/notatki" afterDir="false" />
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="fasta types">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clustalo_distance_matrix.sh" beforeDir="false" afterPath="$PROJECT_DIR$/clustalo_distance_matrix.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +50,9 @@
   "keyToString": {
     "Python tests.Doctests in base.executor": "Run",
     "Python.heatmap.executor": "Debug",
+    "Python.ligand_clustering.executor": "Debug",
     "Python.main.executor": "Debug",
+    "Python.test.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -82,7 +83,7 @@
       <updated>1713283714201</updated>
       <workItem from="1713284755864" duration="267000" />
       <workItem from="1713340687161" duration="11928000" />
-      <workItem from="1713360657878" duration="3657000" />
+      <workItem from="1713360657878" duration="18501000" />
     </task>
     <task id="LOCAL-00001" summary="biopython similarity matrix">
       <option name="closed" value="true" />
@@ -252,7 +253,127 @@
       <option name="project" value="LOCAL" />
       <updated>1713429562664</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="clusters">
+      <option name="closed" value="true" />
+      <created>1713429772812</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1713429772812</updated>
+    </task>
+    <task id="LOCAL-00023" summary="clusters">
+      <option name="closed" value="true" />
+      <created>1713429920510</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1713429920510</updated>
+    </task>
+    <task id="LOCAL-00024" summary="clusters">
+      <option name="closed" value="true" />
+      <created>1713429966520</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1713429966520</updated>
+    </task>
+    <task id="LOCAL-00025" summary="notes">
+      <option name="closed" value="true" />
+      <created>1713431813677</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1713431813677</updated>
+    </task>
+    <task id="LOCAL-00026" summary="txt to tensor">
+      <option name="closed" value="true" />
+      <created>1713432889964</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1713432889964</updated>
+    </task>
+    <task id="LOCAL-00027" summary="heatmap">
+      <option name="closed" value="true" />
+      <created>1713438885083</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1713438885083</updated>
+    </task>
+    <task id="LOCAL-00028" summary="heatmap">
+      <option name="closed" value="true" />
+      <created>1713438987870</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1713438987870</updated>
+    </task>
+    <task id="LOCAL-00029" summary="heatmap">
+      <option name="closed" value="true" />
+      <created>1713439073426</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1713439073426</updated>
+    </task>
+    <task id="LOCAL-00030" summary="heatmap">
+      <option name="closed" value="true" />
+      <created>1713439356860</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1713439356860</updated>
+    </task>
+    <task id="LOCAL-00031" summary="heatmap">
+      <option name="closed" value="true" />
+      <created>1713439619164</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1713439619164</updated>
+    </task>
+    <task id="LOCAL-00032" summary="heatmap">
+      <option name="closed" value="true" />
+      <created>1713445926321</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1713445926321</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fasta types">
+      <option name="closed" value="true" />
+      <created>1713453772012</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1713453772012</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fasta types">
+      <option name="closed" value="true" />
+      <created>1713453847588</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1713453847588</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fasta types">
+      <option name="closed" value="true" />
+      <created>1713453935164</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1713453935164</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fasta types">
+      <option name="closed" value="true" />
+      <created>1713454030386</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1713454030386</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,22 +383,39 @@
     <MESSAGE value="biopython similarity matrix" />
     <MESSAGE value="clustalo" />
     <MESSAGE value="cdhit" />
-    <option name="LAST_COMMIT_MESSAGE" value="cdhit" />
+    <MESSAGE value="clusters" />
+    <MESSAGE value="notes" />
+    <MESSAGE value="txt to tensor" />
+    <MESSAGE value="heatmap" />
+    <MESSAGE value="fasta types" />
+    <option name="LAST_COMMIT_MESSAGE" value="fasta types" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/heatmap.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ligand_clustering.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Cluster$Doctests_in_base.coverage" NAME="Doctests in base Coverage Results" MODIFIED="1713340782965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Library/Python/3.9/lib/python/site-packages/pandas/core/indexes" />
-    <SUITE FILE_PATH="coverage/Cluster$main.coverage" NAME="main Coverage Results" MODIFIED="1713343839693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Cluster$main.coverage" NAME="main Coverage Results" MODIFIED="1713453648715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Cluster$test.coverage" NAME="test Coverage Results" MODIFIED="1713445234703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Cluster$heatmap.coverage" NAME="heatmap Coverage Results" MODIFIED="1713361609282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Cluster$ligand_clustering.coverage" NAME="ligand_clustering Coverage Results" MODIFIED="1713445367992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
