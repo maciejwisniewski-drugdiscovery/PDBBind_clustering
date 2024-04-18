@@ -16,11 +16,15 @@ cdhit_clusters_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDB
 
 # Wczytanie DataFrame'u zawierającego SMILES ligandów oraz Sekwencje AA białek kompleksów
 dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
-dataframe = pd.read_csv(dataframe_filepath)[1:3]
+dataframe = pd.read_csv(dataframe_filepath)
+dataframe = dataframe.sort_values(by=['type'])
+types = dataframe['type'].drop_duplicates().tolist()
+print(types)
 
 # Wczytanie sekwencji białek i SMILES
 
 dataframe['seq'] = dataframe['seq'].str.replace(':','')
+
 smiles = dataframe['smiles'].tolist()
 protein_sequences=dataframe['seq'].tolist()
 
@@ -28,7 +32,7 @@ grouped_sequences = {protein_type: dataframe[dataframe['type'] == protein_type][
                      for protein_type in dataframe['type'].unique()}
 
 
-# ?
+
 def merged_fasta(df, protein_merged_seq_output_filepath):
 
     protein_records = []
@@ -48,5 +52,6 @@ def merged_fasta(df, protein_merged_seq_output_filepath):
 # Zapisujemy sekwencje do pliku w formacie FASTA
 if not os.path.exists(pdbbind_proteins_fasta_filepath):
     SeqIO.write(protein_sequences, pdbbind_proteins_fasta_filepath, "fasta")
+
 
 
