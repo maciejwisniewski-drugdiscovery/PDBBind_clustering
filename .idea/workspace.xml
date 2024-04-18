@@ -4,15 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="clustalo">
-      <change afterPath="$PROJECT_DIR$/generate_cdhit_clusters.sh" afterDir="false" />
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="cdhit">
+      <change afterPath="$PROJECT_DIR$/notatki" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clustalo_distance_matrix.sh" beforeDir="false" afterPath="$PROJECT_DIR$/clustalo_distance_matrix.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,6 +36,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python tests.Doctests in base.executor": "Run",
+    "Python.heatmap.executor": "Debug",
     "Python.main.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -59,7 +67,8 @@
       <option name="presentableId" value="Default" />
       <updated>1713283714201</updated>
       <workItem from="1713284755864" duration="267000" />
-      <workItem from="1713340687161" duration="11518000" />
+      <workItem from="1713340687161" duration="11928000" />
+      <workItem from="1713360657878" duration="3657000" />
     </task>
     <task id="LOCAL-00001" summary="biopython similarity matrix">
       <option name="closed" value="true" />
@@ -205,7 +214,31 @@
       <option name="project" value="LOCAL" />
       <updated>1713356174806</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="cdhit">
+      <option name="closed" value="true" />
+      <created>1713356553454</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1713356553454</updated>
+    </task>
+    <task id="LOCAL-00020" summary="cdhit">
+      <option name="closed" value="true" />
+      <created>1713429376679</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1713429376679</updated>
+    </task>
+    <task id="LOCAL-00021" summary="cdhit">
+      <option name="closed" value="true" />
+      <created>1713429562664</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1713429562664</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,15 +247,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="biopython similarity matrix" />
     <MESSAGE value="clustalo" />
-    <option name="LAST_COMMIT_MESSAGE" value="clustalo" />
+    <MESSAGE value="cdhit" />
+    <option name="LAST_COMMIT_MESSAGE" value="cdhit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clustering.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/heatmap.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -230,5 +264,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Cluster$Doctests_in_base.coverage" NAME="Doctests in base Coverage Results" MODIFIED="1713340782965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Library/Python/3.9/lib/python/site-packages/pandas/core/indexes" />
     <SUITE FILE_PATH="coverage/Cluster$main.coverage" NAME="main Coverage Results" MODIFIED="1713343839693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Cluster$heatmap.coverage" NAME="heatmap Coverage Results" MODIFIED="1713361609282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
