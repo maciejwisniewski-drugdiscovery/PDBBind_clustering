@@ -51,7 +51,7 @@ def merged_fasta(df, protein_merged_seq_output_filepath):
 
 # Zapisujemy sekwencje do pliku w formacie FASTA
 if not os.path.exists(pdbbind_proteins_fasta_filepath):
-    SeqIO.write(protein_sequences, pdbbind_proteins_fasta_filepath, "fasta")
+    merged_fasta(dataframe,pdbbind_proteins_fasta_filepath)
 
 
 
