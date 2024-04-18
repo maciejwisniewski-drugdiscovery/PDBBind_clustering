@@ -88,8 +88,12 @@ if not os.path.exists(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequ
             dataframe.drop('is_representative_y', axis=1, inplace=True)
             dataframe.rename(columns={'cluster_x': 'cluster'}, inplace=True)
             dataframe.rename(columns={'is_representative_x': 'is_representative'}, inplace=True)
+
+    dataframe.drop(columns=['Unnamed: 0.2', 'Unnamed: 0.1', 'Unnamed: 0','identifier'],axis=1,inplace=True)
     print(dataframe.columns)
     # Save Protein Sequence Clusters:
-    #dataframe.to_csv(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequences_clusters.csv')
+    dataframe.to_csv(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequences_clusters.csv')
 
+else:
+    dataframe = pd.read_csv(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequences_clusters.csv')
 
