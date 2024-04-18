@@ -31,11 +31,11 @@ y_divisions = x_divisions
 
 #  HeatMap Creation
 print('Heat Map Creation')
-plt.figure()
+plt.figure(figsize=(14, 12))
 plt.imshow(distance_tensor, cmap='gist_ncar', interpolation='nearest')
 
-plt.xticks(np.array(x_divisions[:-1]) + np.diff(x_divisions), x_categories, rotation=45)
-plt.yticks(np.array(y_divisions[:-1]) + np.diff(y_divisions), y_categories)
+plt.xticks(np.array(x_divisions[:-1]) + np.diff(x_divisions), x_categories, rotation=45,fontsize=8)
+plt.yticks(np.array(y_divisions[:-1]) + np.diff(y_divisions), y_categories, fontsize=8)
 
 plt.title('Distance Matrix of Protein Sequences in PDBBind (Clustal Omega)')
 plt.xlabel('Proteins')
