@@ -86,6 +86,7 @@ for i, protein_type in enumerate(protein_types):
         dataframe.drop('is_representative_y', axis=1, inplace=True)
         dataframe.rename(columns={'cluster_x': 'cluster'}, inplace=True)
         dataframe.rename(columns={'is_representative_x': 'is_representative'}, inplace=True)
-
+    if protein_type == 'viral':
+        print(protein_type_clusters[protein_type_clusters['identifier']=='1hgi'])
 
 
