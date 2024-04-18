@@ -80,15 +80,7 @@
       <updated>1713283714201</updated>
       <workItem from="1713284755864" duration="267000" />
       <workItem from="1713340687161" duration="11928000" />
-      <workItem from="1713360657878" duration="26716000" />
-    </task>
-    <task id="LOCAL-00028" summary="heatmap">
-      <option name="closed" value="true" />
-      <created>1713438987870</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1713438987870</updated>
+      <workItem from="1713360657878" duration="27553000" />
     </task>
     <task id="LOCAL-00029" summary="heatmap">
       <option name="closed" value="true" />
@@ -474,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713464533687</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Ligands Tanimoto">
+      <option name="closed" value="true" />
+      <created>1713464815049</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1713464815049</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

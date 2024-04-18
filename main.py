@@ -14,7 +14,8 @@ from pycdhit import read_fasta, CDHIT
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
-from rdkit.DataManip.Metric.rdMetricMatrixCalc import GetTanimotoSimMat
+from rdkit.Chem import rdFingerprintGenerator
+from rdkit.DataStructs.cDataStructs import BulkTanimotoSimilarity
 
 # Filepath
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics'
@@ -57,18 +58,21 @@ def cluster_proteins_fasta(proteins_fasta_filepath, cd_hit_directory=cd_hit_dire
 
 def calculate_SMILES_similarity_matrix(smiles_list):
     # Konwertowanie SMILES na obiekty molekularne
-    mols = [Chem.MolFromSmiles(smiles) for smiles in smiles_list]
+    mols = [Chem.MolFromSmiles(smiles, sanitize=False) for smiles in smiles_list]
+    print(mols)
 
     # Tworzenie fingerprintów Tanimoto
-    fps = [AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024) for mol in mols]
-    print(fps)
-    # Obliczanie macierzy podobieństwa
-    similarity_matrix = GetTanimotoSimMat(fps)
-    #similarity_matrix = np.zeros((len(fps), len(fps)))
-    #for i in range(len(fps)):
-    #    for j in range(len(fps)):
-    #        similarity_matrix[i, j] = DataStructs.TanimotoSimilarity(fps[i], fps[j])
-    return similarity_matrix
+    rdkit_gen = rdFingerprintGenerator.GetRDKitFPGenerator(maxPath=7)
+    fgrps = [rdkit_gen.GetFingerprint(mol) for mol in mols]
+
+    similarities = np.zeros((len(fgrps), len(fgrps)))
+    for i in range(1, len(fgrps)):
+        print(i)
+        similarity = BulkTanimotoSimilarity(fgrps[i], fgrps[:i])
+        similarities[i, :i] = similarity
+        similarities[:i, i] = similarity
+
+    return similarities
 
 
 
@@ -165,7 +169,32 @@ if not os.path.exists(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequenc
     plt.savefig(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequences_distance_heatmap.png')
 
 # Smiles Similarity Map
-if not os.path.exists(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.npy'):
+if not os.path.exists(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.pt'):
     smiles_list = dataframe['smiles'].tolist()
     numpy_tanimoto_matrix = calculate_SMILES_similarity_matrix(smiles_list)
-    np.save(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.npy',numpy_tanimoto_matrix)
+    torch_tanimoto_tensor = torch.from_numpy(numpy_tanimoto_matrix)
+    torch.save(torch_tanimoto_tensor, datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.pt')
+else:
+    torch_tanimoto_tensor = torch.load(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.pt')
+
+# Generate Tanimoto HeatMap
+if not os.path.exists(datadir+'/Clusters/images/Tanimoto_PDBBind_ligand_SMILES_similarity_heatmap.png'):
+
+    categories = dataframe['type'].unique()
+    divisions = [0] + list(dataframe.groupby('type').size().cumsum())
+    print(divisions)
+
+    print('Heat Map Creation')
+
+    plt.figure(figsize=(14, 12))
+    plt.imshow(torch_tanimoto_tensor, cmap='gist_ncar', interpolation='nearest')
+
+    plt.xticks(np.array(divisions[:-1]) + np.diff(divisions), categories, rotation=45,fontsize=8)
+    plt.yticks(np.array(divisions[:-1]) + np.diff(divisions), categories, fontsize=8)
+
+    plt.title('Similarity Matrix of Ligand SMILES in PDBBind (Tanimoto FingerPrints)')
+    plt.xlabel('Ligands')
+    plt.ylabel('Ligands')
+    plt.colorbar()
+
+    plt.savefig(datadir+'/Clusters/images/Tanimoto_PDBBind_ligand_SMILES_similarity_heatmap.png')

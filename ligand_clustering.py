@@ -48,3 +48,5 @@ if not os.path.exists(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES
     numpy_tanimoto_matrix = calculate_SMILES_similarity_matrix(smiles_list)
     print(numpy_tanimoto_matrix)
     np.save(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.npy',numpy_tanimoto_matrix)
+else:
+    numpy_tanimoto_matrix = np.load(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.npy')
