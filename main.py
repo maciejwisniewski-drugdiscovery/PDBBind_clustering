@@ -70,7 +70,8 @@ for protein_type in protein_types:
     protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
 
     protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
+    protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
     protein_type_clusters.rename(columns={'cluster': 'protein_sequence_cluster'}, inplace=True)
 
-    dataframe = pd.merge(raw_dataframe,protein_type_clusters,on='pdbid',how='outer')
+    dataframe = pd.merge(raw_dataframe,protein_type_clusters,left_on='pdbid',right_on='identifier',how='outer')
     print(dataframe)
