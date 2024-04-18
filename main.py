@@ -1,5 +1,11 @@
 import pandas as pd
 import numpy as np
+import os
+
+from Bio.SeqIO import SeqRecord
+from Bio.Seq import Seq
+from Bio import SeqIO
+
 #from pycdhit import cd_hit, read_clstr
 
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/'
