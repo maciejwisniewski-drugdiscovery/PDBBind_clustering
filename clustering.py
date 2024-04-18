@@ -46,6 +46,7 @@ def merged_fasta(df, protein_merged_seq_output_filepath):
         protein_seq_record = SeqRecord(Seq(protein_sequence), id=pdb_id,description=description)
         protein_records.append(protein_seq_record)
 
+    print(protein_records)
     SeqIO.write(protein_records, protein_merged_seq_output_filepath, "fasta")
 
 
