@@ -66,11 +66,16 @@ for protein_type in protein_types:
 a=1
 
 # CD-HiT clustering
-for protein_type in protein_types:
+for i, rotein_type in enumerate(protein_types):
     protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
 
     protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
     protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
     protein_type_clusters.rename(columns={'cluster': 'protein_sequence_cluster'}, inplace=True)
     print(protein_type_clusters)
-    dataframe = pd.merge(raw_dataframe,protein_type_clusters,left_on='pdbid',right_on='identifier',how='outer')
+    if i == 0:
+        dataframe = pd.merge(raw_dataframe,protein_type_clusters,left_on='pdbid',right_on='identifier',how='outer')
+    else:
+        dataframe = pd.merge(dataframe,protein_type_clusters,left_on='pdbid',right_on='identifier',how='outer')
+
+print(dataframe)
