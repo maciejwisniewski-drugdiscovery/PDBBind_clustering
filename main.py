@@ -93,7 +93,7 @@ if not os.path.exists(datadir+'/Clusters/clusters/clustalo_protein_sequences_clu
     print(dataframe.columns)
 
     # Save Protein Sequence Clusters:
-    dataframe.to_csv(datadir+'/Clusters/clustalo_clusters/cdhit_protein_sequences_clusters.csv')
+    dataframe.to_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv')
 
 else:
     dataframe = pd.read_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv')
