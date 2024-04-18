@@ -67,27 +67,29 @@ for protein_type in protein_types:
 a=1
 
 # CD-HiT clustering
-for i, protein_type in enumerate(protein_types):
-    print(protein_type)
-    protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
+if not os.path.exists(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequences_clusters.csv'):
+    for i, protein_type in enumerate(protein_types):
+        print(protein_type)
+        protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
 
-    protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
-    protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
-    print(protein_type_clusters)
-    protein_type_clusters.drop(columns=['size', 'identity'],axis=1, inplace=True)
+        protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
+        protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
+        print(protein_type_clusters)
+        protein_type_clusters.drop(columns=['size', 'identity'],axis=1, inplace=True)
 
-    if i == 0:
-        dataframe = pd.merge(raw_dataframe, protein_type_clusters, left_on='pdbid',right_on='identifier', how='left')
-    if i != 0:
-        dataframe.drop(columns=['identifier'], axis=1, inplace=True)
-        dataframe = pd.merge(dataframe, protein_type_clusters, left_on='pdbid',right_on='identifier', how='left')
-        dataframe['cluster_x'] = dataframe['cluster_y'].fillna(dataframe['cluster_x'])
-        dataframe['is_representative_x'] = dataframe['is_representative_y'].fillna(dataframe['is_representative_x'])
-        dataframe.drop('cluster_y', axis=1, inplace=True)
-        dataframe.drop('is_representative_y', axis=1, inplace=True)
-        dataframe.rename(columns={'cluster_x': 'cluster'}, inplace=True)
-        dataframe.rename(columns={'is_representative_x': 'is_representative'}, inplace=True)
-    if protein_type == 'viral':
-        print(protein_type_clusters[protein_type_clusters['identifier']=='1hgi'])
+        if i == 0:
+            dataframe = pd.merge(raw_dataframe, protein_type_clusters, left_on='pdbid',right_on='identifier', how='left')
+        if i != 0:
+            dataframe.drop(columns=['identifier'], axis=1, inplace=True)
+            dataframe = pd.merge(dataframe, protein_type_clusters, left_on='pdbid',right_on='identifier', how='left')
+            dataframe['cluster_x'] = dataframe['cluster_y'].fillna(dataframe['cluster_x'])
+            dataframe['is_representative_x'] = dataframe['is_representative_y'].fillna(dataframe['is_representative_x'])
+            dataframe.drop('cluster_y', axis=1, inplace=True)
+            dataframe.drop('is_representative_y', axis=1, inplace=True)
+            dataframe.rename(columns={'cluster_x': 'cluster'}, inplace=True)
+            dataframe.rename(columns={'is_representative_x': 'is_representative'}, inplace=True)
+    print(dataframe.columns)
+    # Save Protein Sequence Clusters:
+    #dataframe.to_csv(datadir+'/Clusters/clustalo_clusters/clustalo_protein_sequences_clusters.csv')
 
 
