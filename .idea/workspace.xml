@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="clustering">
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="heatmap">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -83,23 +83,7 @@
       <updated>1713283714201</updated>
       <workItem from="1713284755864" duration="267000" />
       <workItem from="1713340687161" duration="11928000" />
-      <workItem from="1713360657878" duration="24008000" />
-    </task>
-    <task id="LOCAL-00020" summary="cdhit">
-      <option name="closed" value="true" />
-      <created>1713429376679</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1713429376679</updated>
-    </task>
-    <task id="LOCAL-00021" summary="cdhit">
-      <option name="closed" value="true" />
-      <created>1713429562664</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1713429562664</updated>
+      <workItem from="1713360657878" duration="25754000" />
     </task>
     <task id="LOCAL-00022" summary="clusters">
       <option name="closed" value="true" />
@@ -477,7 +461,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713460423630</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="heatmap">
+      <option name="closed" value="true" />
+      <created>1713461893911</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1713461893911</updated>
+    </task>
+    <task id="LOCAL-00070" summary="heatmap">
+      <option name="closed" value="true" />
+      <created>1713462752532</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1713462752533</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,10 +490,10 @@
     <MESSAGE value="clusters" />
     <MESSAGE value="notes" />
     <MESSAGE value="txt to tensor" />
-    <MESSAGE value="heatmap" />
     <MESSAGE value="fasta types" />
     <MESSAGE value="clustering" />
-    <option name="LAST_COMMIT_MESSAGE" value="clustering" />
+    <MESSAGE value="heatmap" />
+    <option name="LAST_COMMIT_MESSAGE" value="heatmap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

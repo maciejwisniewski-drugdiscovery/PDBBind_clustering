@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+
 import os
 import sys
 import torch
@@ -10,7 +12,9 @@ from Bio import SeqIO
 
 from pycdhit import read_fasta, CDHIT
 
-import matplotlib.pyplot as plt
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.DataManip.Metric.rdMetricMatrixCalc import GetTanimotoSimMat
 
 # Filepath
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics'
@@ -50,6 +54,23 @@ def cluster_proteins_fasta(proteins_fasta_filepath, cd_hit_directory=cd_hit_dire
     df_in = read_fasta(proteins_fasta_filepath)
     df_out, df_clstr = cdhit.set_options(c=0.95, d=0, n=5).cluster(df_in)
     return df_clstr
+
+def calculate_SMILES_similarity_matrix(smiles_list):
+    # Konwertowanie SMILES na obiekty molekularne
+    mols = [Chem.MolFromSmiles(smiles) for smiles in smiles_list]
+
+    # Tworzenie fingerprintów Tanimoto
+    fps = [AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024) for mol in mols]
+    print(fps)
+    # Obliczanie macierzy podobieństwa
+    similarity_matrix = GetTanimotoSimMat(fps)
+    #similarity_matrix = np.zeros((len(fps), len(fps)))
+    #for i in range(len(fps)):
+    #    for j in range(len(fps)):
+    #        similarity_matrix[i, j] = DataStructs.TanimotoSimilarity(fps[i], fps[j])
+    return similarity_matrix
+
+
 
 
 
@@ -143,3 +164,8 @@ if not os.path.exists(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequenc
 
     plt.savefig(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequences_distance_heatmap.png')
 
+# Smiles Similarity Map
+if not os.path.exists(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.npy'):
+    smiles_list = dataframe['smiles'].tolist()
+    numpy_tanimoto_matrix = calculate_SMILES_similarity_matrix(smiles_list)
+    np.save(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.npy',numpy_tanimoto_matrix)
