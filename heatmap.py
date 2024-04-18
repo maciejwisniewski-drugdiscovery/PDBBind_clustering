@@ -21,7 +21,7 @@ else:
     torch_distance_tensor_fp = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clustalo_matrices/clustalo_PDBBind_protein_sequences_distance_matrix.pt'
 
 distance_tensor = torch.load(torch_distance_tensor_fp)
-
+distance_tensor = distance_tensor.cpu()
 
 #  Types of proteins
 x_categories = dataframe['type'].unique()
