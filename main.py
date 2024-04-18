@@ -1,16 +1,17 @@
 import pandas as pd
 import numpy as np
 import os
+import sys
 
 from Bio.SeqIO import SeqRecord
 from Bio.Seq import Seq
 from Bio import SeqIO
 
-from pycdhit import read_fasta, read_clstr, CDHIT
+from pycdhit import read_fasta, CDHIT
 
 
 # Filepath
-datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/'
+datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics'
 cd_hit_directory = '/home2/faculty/mwisniewski/Software/cd-hit-v4.8.1-2019-0228/'
 
 
@@ -101,4 +102,11 @@ if not os.path.exists(datadir+'/Clusters/clusters/clustalo_protein_sequences_clu
                             protein_type_column='cluster')
 else:
     dataframe = pd.read_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv')
+
+
+# End and run sbatch clustalo_distance_matrix.sh
+if not os.path.exists(datadir+'/Clusters/matrices/ClustalO_PDBBind_protein_sequences_distance_matrix.txt'):
+    print('Run sbatch clustalo_distance_matrix.sh to continue')
+    sys.exit()
+print('o')
 
