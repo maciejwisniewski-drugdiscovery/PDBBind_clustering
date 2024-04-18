@@ -14,8 +14,10 @@ dataframe = dataframe.sort_values(by=['type']).reset_index()
 #  Load Distance Matrix Tensor
 
 if torch.cuda.is_available():
+    print('GPU available')
     torch_distance_tensor_fp = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clustalo_matrices/gpu_clustalo_PDBBind_protein_sequences_distance_matrix.pt'
 else:
+    print('GPU not available')
     torch_distance_tensor_fp = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clustalo_matrices/clustalo_PDBBind_protein_sequences_distance_matrix.pt'
 
 distance_tensor = torch.load(torch_distance_tensor_fp)
@@ -26,8 +28,9 @@ x_categories = dataframe['type'].unique()
 y_categories = dataframe['type'].unique()
 x_divisions = [0] + list(dataframe.groupby('type').size().cumsum())
 y_divisions = x_divisions
-#  HeatMap Creation
 
+#  HeatMap Creation
+print('Heat Map Creation')
 plt.figure()
 plt.imshow(distance_tensor, cmap='hot', interpolation='nearest')
 
