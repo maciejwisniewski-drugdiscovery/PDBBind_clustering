@@ -8,7 +8,6 @@
 input_fasta=/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/PDBBind_proteins_sequences.fasta
 output_clusters=/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/cdhit_PDBBind_protein_sequences_clusters
 
-
 cd /mnt/evafs/groups/sfglab/mwisniewski/anaconda3/bin
 . activate
 source activate PDBBind_clustering

@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="">
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="clustalo">
+      <change afterPath="$PROJECT_DIR$/generate_cdhit_clusters.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering.py" afterDir="false" />
     </list>
@@ -58,12 +59,162 @@
       <option name="presentableId" value="Default" />
       <updated>1713283714201</updated>
       <workItem from="1713284755864" duration="267000" />
-      <workItem from="1713340687161" duration="5526000" />
+      <workItem from="1713340687161" duration="11518000" />
     </task>
+    <task id="LOCAL-00001" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713346510323</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713346510323</updated>
+    </task>
+    <task id="LOCAL-00002" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713346589910</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713346589910</updated>
+    </task>
+    <task id="LOCAL-00003" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713350993410</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713350993410</updated>
+    </task>
+    <task id="LOCAL-00004" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713351022730</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713351022730</updated>
+    </task>
+    <task id="LOCAL-00005" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713351964384</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713351964384</updated>
+    </task>
+    <task id="LOCAL-00006" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713351984806</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713351984806</updated>
+    </task>
+    <task id="LOCAL-00007" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713352545660</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713352545660</updated>
+    </task>
+    <task id="LOCAL-00008" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713352558082</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1713352558082</updated>
+    </task>
+    <task id="LOCAL-00009" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713352650085</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1713352650085</updated>
+    </task>
+    <task id="LOCAL-00010" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713354001330</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1713354001330</updated>
+    </task>
+    <task id="LOCAL-00011" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713354088939</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1713354088939</updated>
+    </task>
+    <task id="LOCAL-00012" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713354237958</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1713354237958</updated>
+    </task>
+    <task id="LOCAL-00013" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713354347344</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1713354347344</updated>
+    </task>
+    <task id="LOCAL-00014" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713354447757</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1713354447757</updated>
+    </task>
+    <task id="LOCAL-00015" summary="biopython similarity matrix">
+      <option name="closed" value="true" />
+      <created>1713354545333</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1713354545333</updated>
+    </task>
+    <task id="LOCAL-00016" summary="clustalo">
+      <option name="closed" value="true" />
+      <created>1713355209397</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1713355209397</updated>
+    </task>
+    <task id="LOCAL-00017" summary="clustalo">
+      <option name="closed" value="true" />
+      <created>1713355379253</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1713355379253</updated>
+    </task>
+    <task id="LOCAL-00018" summary="clustalo">
+      <option name="closed" value="true" />
+      <created>1713356174806</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1713356174806</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="biopython similarity matrix" />
+    <MESSAGE value="clustalo" />
+    <option name="LAST_COMMIT_MESSAGE" value="clustalo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
