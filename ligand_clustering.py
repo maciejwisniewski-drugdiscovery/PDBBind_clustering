@@ -23,7 +23,7 @@ dataframe = pd.read_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clus
 # Funkcja do obliczania macierzy podobieństwa
 def calculate_SMILES_similarity_matrix(smiles_list):
     # Konwertowanie SMILES na obiekty molekularne
-    mols = [Chem.MolFromSmiles(smiles) for smiles in smiles_list]
+    mols = [Chem.MolFromSmiles(smiles, sanitize=False) for smiles in smiles_list]
     print(mols)
     # Tworzenie fingerprintów Tanimoto
     fps = [AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024) for mol in mols]
