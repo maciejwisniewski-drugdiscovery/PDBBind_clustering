@@ -17,6 +17,7 @@ cd_hit_directory = '/home2/faculty/mwisniewski/Software/cd-hit-v4.8.1-2019-0228/
 #  Load Raw PDBBind CSV
 raw_dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
 raw_dataframe = pd.read_csv(raw_dataframe_filepath)
+raw_dataframe['seq'] = raw_dataframe['seq'].str.replace(':','')
 
 
 
