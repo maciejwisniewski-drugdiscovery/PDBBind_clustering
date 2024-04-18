@@ -6,7 +6,8 @@ from Bio.SeqIO import SeqRecord
 from Bio.Seq import Seq
 from Bio import SeqIO
 
-from pycdhit import cd_hit, read_clstr
+from pycdhit import read_fasta, read_clstr, CDHIT
+
 
 # Filepath
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/'
