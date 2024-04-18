@@ -3,11 +3,14 @@ import numpy as np
 import os
 import sys
 import torch
+
 from Bio.SeqIO import SeqRecord
 from Bio.Seq import Seq
 from Bio import SeqIO
+
 from pycdhit import read_fasta, CDHIT
 
+import matplotlib.pyplot as plt
 
 # Filepath
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics'
@@ -139,3 +142,4 @@ if not os.path.exists(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequenc
     plt.colorbar()
 
     plt.savefig(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequences_distance_heatmap.png')
+
