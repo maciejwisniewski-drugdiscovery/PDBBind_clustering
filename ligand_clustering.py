@@ -1,10 +1,23 @@
-import os.path
-from rdkit import Chem
-from rdkit.Chem import AllChem
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+
+import os
+import sys
+import torch
+
+from Bio.SeqIO import SeqRecord
+from Bio.Seq import Seq
+from Bio import SeqIO
+
+from pycdhit import read_fasta, CDHIT
+
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.DataManip.Metric.rdMetricMatrixCalc import GetTanimotoSimMat
 
 # Wczytanie DataFrame'u zawierającego SMILES ligandów oraz Sekwencje AA białek kompleksów
+datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics'
 dataframe = pd.read_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv')
 
 # Funkcja do obliczania macierzy podobieństwa
