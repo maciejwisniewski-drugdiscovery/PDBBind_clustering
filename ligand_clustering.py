@@ -34,7 +34,8 @@ def calculate_SMILES_similarity_matrix(smiles_list):
 
     #fps = [AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024) for mol in mols]
     similarities = np.zeros((len(fgrps), len(fgrps)))
-    for i in range(1, nfgrps):
+    for i in range(1, len(fgrps)):
+        print(i)
         similarity = DataStructs.BulkTanimotoSimilarity(fgrps[i], fgrps[:i])
         similarities[i, :i] = similarity
         similarities[:i, i] = similarity
