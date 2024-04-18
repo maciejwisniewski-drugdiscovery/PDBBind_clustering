@@ -44,7 +44,7 @@ def generate_proteins_fasta(df, proteins_fasta_filepath,pdb_id_column='pdbid',pr
 def cluster_proteins_fasta(proteins_fasta_filepath, cd_hit_directory=cd_hit_directory):
     cdhit = CDHIT(prog="cd-hit", path=cd_hit_directory)
     df_in = read_fasta(proteins_fasta_filepath)
-    df_out, df_clstr = cdhit.set_options(c=0.95, d=0, n=5).cluster()
+    df_out, df_clstr = cdhit.set_options(c=0.95, d=0, n=5).cluster(df_in)
     return df_clstr
 
 
