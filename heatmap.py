@@ -32,7 +32,7 @@ y_divisions = x_divisions
 #  HeatMap Creation
 print('Heat Map Creation')
 plt.figure()
-plt.imshow(distance_tensor, cmap='hot', interpolation='nearest')
+plt.imshow(distance_tensor, cmap='gist_ncar', interpolation='nearest')
 
 plt.xticks(np.array(x_divisions[:-1]) + np.diff(x_divisions), x_categories, rotation=45)
 plt.yticks(np.array(y_divisions[:-1]) + np.diff(y_divisions), y_categories)
