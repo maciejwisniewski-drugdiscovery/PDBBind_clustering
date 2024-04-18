@@ -49,6 +49,10 @@ protein_types = raw_dataframe['type'].drop_duplicates().tolist()
 
 # Generate FASTA file for all types
 for protein_type in protein_types:
-    generate_proteins_fasta(raw_dataframe[raw_dataframe['type'] == protein_type],
-                            datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
+    if not os.path.exists(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta'):
+        generate_proteins_fasta(raw_dataframe[raw_dataframe['type'] == protein_type],
+                                datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
+        print(protein_type,' - Done')
+    else:
+        print(protein_type,' - Already exists')
 a=1
