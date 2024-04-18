@@ -5,8 +5,8 @@ import numpy as np
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/'
 
 #  Load Raw PDBBind CSV
-#raw_dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
-raw_dataframe_filepath='/Users/maciejwisniewski/data/PDBBind/LP_PDBBind.csv'
+raw_dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
+#raw_dataframe_filepath='/Users/maciejwisniewski/data/PDBBind/LP_PDBBind.csv'
 
 raw_dataframe = pd.read_csv(raw_dataframe_filepath)
 
