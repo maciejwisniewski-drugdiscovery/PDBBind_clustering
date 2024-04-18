@@ -83,6 +83,7 @@ for i, protein_type in enumerate(protein_types):
         dataframe['is_representative_x'] = dataframe['is_representative_y'].fillna(dataframe['is_representative_x'])
         dataframe.drop('cluster_y', axis=1, inplace=True)
         dataframe.drop('is_representative_y', axis=1, inplace=True)
+        dataframe.drop(columns=['identifier_x','identifier_y'], axis=1, inplace=True)
         dataframe.rename(columns={'cluster_x': 'cluster'}, inplace=True)
         dataframe.rename(columns={'is_representative_x': 'is_representative'}, inplace=True)
 
