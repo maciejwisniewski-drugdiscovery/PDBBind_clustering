@@ -52,4 +52,3 @@ if not os.path.exists(pdbbind_proteins_fasta_filepath):
     merged_fasta(dataframe,pdbbind_proteins_fasta_filepath)
 
 
-
