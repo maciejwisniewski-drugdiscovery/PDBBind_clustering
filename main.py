@@ -67,6 +67,7 @@ a=1
 
 # CD-HiT clustering
 for i, protein_type in enumerate(protein_types):
+    print(protein_type)
     protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
 
     protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
@@ -86,5 +87,6 @@ for i, protein_type in enumerate(protein_types):
         dataframe.rename(columns={'cluster_x': 'cluster'}, inplace=True)
         dataframe.rename(columns={'is_representative_x': 'is_representative'}, inplace=True)
 
-    print(dataframe)
+
+print(dataframe)
 
