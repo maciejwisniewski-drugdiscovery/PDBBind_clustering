@@ -2,11 +2,10 @@ import pandas as pd
 import numpy as np
 import os
 import sys
-
+import torch
 from Bio.SeqIO import SeqRecord
 from Bio.Seq import Seq
 from Bio import SeqIO
-
 from pycdhit import read_fasta, CDHIT
 
 
@@ -65,10 +64,10 @@ for protein_type in protein_types:
     else:
         print(protein_type,' - Already exists')
 
-a=1
 
 # CD-HiT clustering
 if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv'):
+
     for i, protein_type in enumerate(protein_types):
         print(protein_type)
         protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
@@ -108,5 +107,35 @@ else:
 if not os.path.exists(datadir+'/Clusters/matrices/ClustalO_PDBBind_protein_sequences_distance_matrix.txt'):
     print('Run sbatch clustalo_distance_matrix.sh to continue')
     sys.exit()
-print('o')
 
+# Convert Distance Matrix to Tensor:
+if not os.path.exists(datadir+'/Clusters/matrices/ClustalO_PDBBind_protein_sequences_distance_matrix.pt'):
+    raw_clustalo_matrix = datadir+'/Clusters/matrices/ClustalO_PDBBind_protein_sequences_distance_matrix.txt'
+    numpy_clustalo_matrix = np.genfromtxt(raw_clustalo_matrix, skip_header=1)
+    numpy_clustalo_matrix = numpy_clustalo_matrix[:, 1:]
+    torch_clustalo_tensor = torch.from_numpy(numpy_clustalo_matrix)
+    torch.save(torch_clustalo_tensor, datadir+'/Clusters/matrices/ClustalO_PDBBind_protein_sequences_distance_matrix.pt')
+else:
+    torch_clustalo_tensor = torch.load(datadir+'/Clusters/matrices/ClustalO_PDBBind_protein_sequences_distance_matrix.pt')
+
+# Generate HeatMap
+if not os.path.exists(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequences_distance_heatmap.png'):
+
+    categories = dataframe['type'].unique()
+    divisions = [0] + list(dataframe.groupby('type').size().cumsum())
+    print(divisions)
+
+    print('Heat Map Creation')
+
+    plt.figure(figsize=(14, 12))
+    plt.imshow(torch_clustalo_tensor, cmap='gist_ncar', interpolation='nearest')
+
+    plt.xticks(np.array(divisions[:-1]) + np.diff(divisions), categories, rotation=45,fontsize=8)
+    plt.yticks(np.array(divisions[:-1]) + np.diff(divisions), categories, fontsize=8)
+
+    plt.title('Distance Matrix of Protein Sequences in PDBBind (Clustal Omega)')
+    plt.xlabel('Proteins')
+    plt.ylabel('Proteins')
+    plt.colorbar()
+
+    plt.savefig(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequences_distance_heatmap.png')
