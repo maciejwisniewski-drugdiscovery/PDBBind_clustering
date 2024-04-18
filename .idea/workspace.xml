@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="Ligands Tanimoto">
-      <change beforePath="$PROJECT_DIR$/ligand_clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/ligand_clustering.py" afterDir="false" />
-    </list>
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="Ligands Tanimoto" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,23 +80,7 @@
       <updated>1713283714201</updated>
       <workItem from="1713284755864" duration="267000" />
       <workItem from="1713340687161" duration="11928000" />
-      <workItem from="1713360657878" duration="26408000" />
-    </task>
-    <task id="LOCAL-00026" summary="txt to tensor">
-      <option name="closed" value="true" />
-      <created>1713432889964</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1713432889964</updated>
-    </task>
-    <task id="LOCAL-00027" summary="heatmap">
-      <option name="closed" value="true" />
-      <created>1713438885083</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1713438885083</updated>
+      <workItem from="1713360657878" duration="26716000" />
     </task>
     <task id="LOCAL-00028" summary="heatmap">
       <option name="closed" value="true" />
@@ -476,7 +458,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713464036832</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Ligands Tanimoto">
+      <option name="closed" value="true" />
+      <created>1713464370805</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1713464370805</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Ligands Tanimoto">
+      <option name="closed" value="true" />
+      <created>1713464533687</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1713464533687</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
