@@ -27,7 +27,7 @@ def parse_range(s):
 
 def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range']
-    ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: x.upper())
+    ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: str(x).upper())
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
