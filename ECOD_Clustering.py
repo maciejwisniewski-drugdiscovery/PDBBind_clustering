@@ -34,7 +34,10 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
+    print('\n\n\n')
     print(ECOD_dataframe)
+    print('\n\n\n')
+    print(len(ECOD_dataframe))
     #ECOD_dataframe =ECOD_dataframe.explode(column=['pdb_range'])
     #ECOD_dataframe = ECOD_dataframe.dropna(subset=['pdb_range'])
     #ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
