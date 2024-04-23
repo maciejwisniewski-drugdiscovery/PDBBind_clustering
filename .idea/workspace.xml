@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="ECOD Clustering" />
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="ECOD Clustering">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,39 +83,7 @@
       <workItem from="1713284755864" duration="267000" />
       <workItem from="1713340687161" duration="11928000" />
       <workItem from="1713360657878" duration="29901000" />
-      <workItem from="1713857823189" duration="15008000" />
-    </task>
-    <task id="LOCAL-00114" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713863435719</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1713863435719</updated>
-    </task>
-    <task id="LOCAL-00115" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713863603062</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1713863603062</updated>
-    </task>
-    <task id="LOCAL-00116" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713863701492</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1713863701492</updated>
-    </task>
-    <task id="LOCAL-00117" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713867733274</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1713867733274</updated>
+      <workItem from="1713857823189" duration="15954000" />
     </task>
     <task id="LOCAL-00118" summary="ECOD Clustering">
       <option name="closed" value="true" />
@@ -475,7 +445,39 @@
       <option name="project" value="LOCAL" />
       <updated>1713880838388</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713880919999</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1713880919999</updated>
+    </task>
+    <task id="LOCAL-00164" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713880944796</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1713880944796</updated>
+    </task>
+    <task id="LOCAL-00165" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713881101839</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1713881101839</updated>
+    </task>
+    <task id="LOCAL-00166" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713881322508</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1713881322508</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

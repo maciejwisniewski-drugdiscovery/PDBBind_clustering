@@ -14,7 +14,11 @@ datadir = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/lp'
 dataframe = pd.read_csv(dataframe_filepath)
 dataframe['ligand_closest_chain'] = ''
 dataframe['ligand_closest_residue_id'] = ''
-dataframe['ECOD'] = ''
+dataframe['ECOD_Cluster_1'] = ''
+dataframe['ECOD_Cluster_2'] = ''
+dataframe['ECOD_Cluster_3'] = ''
+dataframe['ECOD_Cluster_4'] = ''
+dataframe['ECOD_Cluster_5'] = ''
 
 ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
 
@@ -28,11 +32,6 @@ def parse_range(s):
 def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range']
     ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: str(x).upper())
-    ECOD_dataframe['Cluster_1'] = ECOD_dataframe['arch_name']
-    ECOD_dataframe['Cluster_2'] = ECOD_dataframe[['arch_name','x_name']].apply(lambda row: ' - '.join(row), axis=1)
-    ECOD_dataframe['Cluster_3'] = ECOD_dataframe[['arch_name','x_name','h_name']].apply(lambda row: ' - '.join(row), axis=1)
-    ECOD_dataframe['Cluster_4'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name']].apply(lambda row: ' - '.join(row), axis=1)
-    ECOD_dataframe['Cluster_5'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
@@ -104,19 +103,18 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     option = option[option['chain'].str.contains(ligand_closest_chain)]
     option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
-    return (option['Cluster_1'].values[0],
-            option['Cluster_2'].values[0],
-            option['Cluster_3'].values[0],
-            option['Cluster_4'].values[0],
-            option['Cluster_5'].values[0])
+    return (option['arch_name'].values[0],
+            option['x_name'].values[0],
+            option['h_name'].values[0],
+            option['t_name'].values[0],
+            option['f_name'].values[0])
 
 
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
-dataframe = dataframe[0:3]
 for index,row in dataframe.iterrows():
-
+    print(index,'/',len(dataframe))
     molecule = row['pdbid']
     print(molecule)
     protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
@@ -132,5 +130,11 @@ for index,row in dataframe.iterrows():
     print(cluster_3)
     print(cluster_4)
     print(cluster_5)
+    dataframe.at[index,'ECOD_Cluster_1'] = cluster_1
+    dataframe.at[index,'ECOD_Cluster_2'] = cluster_2
+    dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
+    dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
+    dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
+
 
 
