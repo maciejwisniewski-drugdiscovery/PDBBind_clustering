@@ -136,7 +136,7 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
         return ('ARCH_UNCLASSIFIED','X_UNCLASSIFIED','H_UNCLASSIFIED','T_UNCLASSIFIED','F_UNCLASSIFIED')
 
 print('ECOD Dataframe Preprocessing')
-#ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
+ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
 dataframe = dataframe[dataframe['pdbid']=='4b73']
 
