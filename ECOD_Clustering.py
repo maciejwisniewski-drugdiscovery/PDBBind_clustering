@@ -20,7 +20,7 @@ ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
 def preprocess_ECOD_df(ECOD_dataframe):
 
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
-    ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id']=='e5j3dA3']
+    ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe =ECOD_dataframe.explode(column=['pdb_range'])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[1])
