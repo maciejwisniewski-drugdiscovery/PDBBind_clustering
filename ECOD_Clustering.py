@@ -41,7 +41,8 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     ns = NeighborSearch(list(protein_structure.get_atoms()))
     ligand_closest_chains = []
     min_distance = float('inf')
-
+    for protein_atom in protein_structure.get_atoms():
+        print(protein_atom.get_full_id())
     # Iteracja po atomach ligandu
     for ligand_atom in ligand_structure.get_atoms():
         # Znalezienie najbliższego atomu białka dla danego atomu liganda
@@ -50,7 +51,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
                                for closest_atom in closest_atoms
                                if closest_atom.get_parent().get_full_id()[0] == 'protein']
         count_atom_closest_chains = Counter(atom_closest_chains)
-        print(count_atom_closest_chains)
+        #print(count_atom_closest_chains)
         try:
             atom_closest_chain = count_atom_closest_chains.most_common(1)[0][0]
         except:
@@ -59,7 +60,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 
     count_ligand_closest_chains = Counter(ligand_closest_chains)
     ligand_closest_chain = count_ligand_closest_chains.most_common(1)[0][0]
-    print(ligand_closest_chain)
+    #print(ligand_closest_chain)
     return ligand_closest_chain
 
 
