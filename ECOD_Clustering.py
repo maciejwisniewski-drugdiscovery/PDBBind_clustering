@@ -17,6 +17,10 @@ dataframe['closest_chain_residue_to_ligand'] = ''
 dataframe['ECOD'] = ''
 
 ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
+
+def parse_range(s):
+    start, end = map(int, s.split('-'))
+    return range(start, end + 1)
 def preprocess_ECOD_df(ECOD_dataframe):
 
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
@@ -27,6 +31,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
     print(len(ECOD_dataframe))
     ECOD_dataframe = ECOD_dataframe.drop_duplicates(subset=['pdb_range','chain','pdb'])
     print(len(ECOD_dataframe))
+    ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe.head())
 
     return ECOD_dataframe
