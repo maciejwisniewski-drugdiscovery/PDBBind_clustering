@@ -84,17 +84,14 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
             atom_10_closest_chains = count_atom_closest_chains.most_common(10)
             for atom_closest_chain in atom_10_closest_chains:
                 if atom_closest_chain[1] > 4:
-                    print(atom_closest_chain)
                     ligand_closest_chains.append(atom_closest_chain[0])
         except:
             atom_closest_chain = None
-    print(ligand_closest_chains)
     count_ligand_closest_chains = Counter(ligand_closest_chains)
     ligand_closest_chains_and_residues = []
     for ligand_closest_chain_and_residue in count_ligand_closest_chains.most_common(5):
         ligand_closest_chains_and_residues.append(ligand_closest_chain_and_residue[0])
 
-    print(ligand_closest_chains_and_residues)
 
     return ligand_closest_chains_and_residues
 def check_range(range_tuple, x):
