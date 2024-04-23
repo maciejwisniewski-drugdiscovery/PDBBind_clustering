@@ -31,7 +31,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
-    ECOD_dataframe = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match('[A-Za-z]+:[0-9]+-[0-9]+')]
+    ECOD_dataframe = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe)
