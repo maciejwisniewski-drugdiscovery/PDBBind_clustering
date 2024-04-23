@@ -21,9 +21,10 @@ ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
 def parse_range(s):
     try:
         start, end = map(int, s.split('-'))
+        return range(start, end + 1)
     except:
         print(s)
-    return range(start, end + 1)
+
 def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range']
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
