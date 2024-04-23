@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="ECOD Clustering" />
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="ECOD Clustering">
+      <change beforePath="$PROJECT_DIR$/ECOD_Clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECOD_Clustering.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,47 +83,7 @@
       <workItem from="1713284755864" duration="267000" />
       <workItem from="1713340687161" duration="11928000" />
       <workItem from="1713360657878" duration="29901000" />
-      <workItem from="1713857823189" duration="1261000" />
-    </task>
-    <task id="LOCAL-00038" summary="clustering">
-      <option name="closed" value="true" />
-      <created>1713456217183</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1713456217183</updated>
-    </task>
-    <task id="LOCAL-00039" summary="clustering">
-      <option name="closed" value="true" />
-      <created>1713456247394</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1713456247394</updated>
-    </task>
-    <task id="LOCAL-00040" summary="clustering">
-      <option name="closed" value="true" />
-      <created>1713456381502</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1713456381502</updated>
-    </task>
-    <task id="LOCAL-00041" summary="clustering">
-      <option name="closed" value="true" />
-      <created>1713456443034</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1713456443034</updated>
-    </task>
-    <task id="LOCAL-00042" summary="clustering">
-      <option name="closed" value="true" />
-      <created>1713456453482</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1713456453482</updated>
+      <workItem from="1713857823189" duration="1588000" />
     </task>
     <task id="LOCAL-00043" summary="clustering">
       <option name="closed" value="true" />
@@ -475,7 +437,47 @@
       <option name="project" value="LOCAL" />
       <updated>1713859055371</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713859128174</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1713859128174</updated>
+    </task>
+    <task id="LOCAL-00088" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713859164684</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1713859164684</updated>
+    </task>
+    <task id="LOCAL-00089" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713859217063</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1713859217063</updated>
+    </task>
+    <task id="LOCAL-00090" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713859256838</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1713859256838</updated>
+    </task>
+    <task id="LOCAL-00091" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713859299321</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1713859299321</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

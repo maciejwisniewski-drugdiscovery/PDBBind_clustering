@@ -7,11 +7,12 @@ import os
 import pandas as pd
 
 dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
+ECOD_dataframe_filepath = ''
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/lp'
 
 dataframe = pd.read_csv(dataframe_filepath)
+dataframe['closest_chain_to_ligand'] = ''
 dataframe['ECOD'] = ''
-
 
 def mol2_to_biopython_structure(mol2_file):
     # Wczytanie ligandu z pliku Mol2
@@ -45,7 +46,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     for ligand_atom in ligand_structure.get_atoms():
         # Znalezienie najbliższego atomu białka dla danego atomu liganda
         closest_atoms = ns.search(ligand_atom.get_coord(),4.8)
-        atom_closest_chains = [str(closest_atom.get_parent().get_parent())[-2] for closest_atom in closest_atoms]
+        atom_closest_chains = [str(closest_atom.get_parent()) for closest_atom in closest_atoms]
         count_atom_closest_chains = Counter(atom_closest_chains)
         print(count_atom_closest_chains)
         try:
@@ -57,13 +58,15 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     count_ligand_closest_chains = Counter(ligand_closest_chains)
     ligand_closest_chain = count_ligand_closest_chains.most_common(1)[0][0]
     print(ligand_closest_chain)
+    return ligand_closest_chain
 
 
-dataframe = dataframe[3:4]
+dataframe = dataframe[0:1]
 for index,row in dataframe.iterrows():
 
     molecule = row['pdbid']
     print(molecule)
     protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
     ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
-    find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
+    closest_chain_to_ligand = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
+    dataframe.at[index,'closest_chain_to_ligand'] = closest_chain_to_ligand
