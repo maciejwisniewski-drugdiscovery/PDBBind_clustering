@@ -19,7 +19,10 @@ dataframe['ECOD'] = ''
 ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
 
 def parse_range(s):
-    start, end = map(int, s.split('-'))
+    try:
+        start, end = map(int, s.split('-'))
+    except:
+        print(s)
     return range(start, end + 1)
 def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range']
@@ -82,8 +85,8 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 
     return ligand_closest_chain_and_residue
 def find_ECOD(molecule,closest_chain_to_ligand,ECOD_dataframe):
-    option = ECOD_dataframe[ECOD_dataframe['pdbid']]
-    option = ECOD_dataframe[ECOD_dataframe['chain']]
+    option = ECOD_dataframe[ECOD_dataframe['pdbid'].str.contains(molecule)]
+    option = ECOD_dataframe[ECOD_dataframe['chain'].str.contains(closest_chain_to_ligand)]
     return None
 
 print('ECOD Dataframe Preprocessing')
