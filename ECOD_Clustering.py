@@ -44,20 +44,9 @@ def preprocess_ECOD_df(ECOD_dataframe):
     print(ECOD_dataframe)
     print('\n\n\n')
     print(len(ECOD_dataframe))
-    #ECOD_dataframe =ECOD_dataframe.explode(column=['pdb_range'])
-    #ECOD_dataframe = ECOD_dataframe.dropna(subset=['pdb_range'])
-    #ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
-    #ECOD_dataframe = ECOD_dataframe.drop_duplicates(subset=['pdb_range','chain','pdb'])
-    #ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: ''.join(c for c in x if c.isdigit() or c in ['-']))
-    #ECOD_dataframe = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.contains('-')]
-    #ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
-    #print(ECOD_dataframe.head())
-    #print(len(ECOD_dataframe))
-
     return ECOD_dataframe
 
-def check_pdb_chains(protein_pdb_file):
-    return None
+
 def mol2_to_biopython_structure(mol2_file):
     # Wczytanie ligandu z pliku Mol2
     mol = Chem.MolFromMol2File(mol2_file)
@@ -113,6 +102,8 @@ def check_range(range_tuple, x):
         return range_tuple[0] <= x <= range_tuple[-1]
     except:
         False
+
+
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     if len(option) == 1:
@@ -129,8 +120,7 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
                 option['h_name'].values[0],
                 option['t_name'].values[0],
                 option['f_name'].values[0])
-    print(ligand_closest_residue_id)
-    print(option)
+    option = option[option['pdb_range'].apply(lambda x: len(x) > 0)]
     option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
     if len(option) == 1:
         return (option['arch_name'].values[0],
