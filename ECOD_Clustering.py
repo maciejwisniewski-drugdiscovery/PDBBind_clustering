@@ -24,6 +24,9 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe =ECOD_dataframe.explode(column=['pdb_range'])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
+    print(len(ECOD_dataframe))
+    ECOD_dataframe = ECOD_dataframe.drop_duplicates(subset=[['pdb_range','chain','pdb']])
+    print(len(ECOD_dataframe))
     #ECOD_dataframe = ECOD_dataframe[ECOD_dataframe['pdb_range'].apply(lambda x: len(x) != 2)]
     print(ECOD_dataframe.head())
 
