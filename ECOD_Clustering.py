@@ -26,13 +26,20 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
+    print(ECOD_dataframe.head())
+    print(len(ECOD_dataframe))
     ECOD_dataframe =ECOD_dataframe.explode(column=['pdb_range'])
+    print(ECOD_dataframe.head())
+    print(len(ECOD_dataframe))
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
+    print(ECOD_dataframe.head())
     print(len(ECOD_dataframe))
     ECOD_dataframe = ECOD_dataframe.drop_duplicates(subset=['pdb_range','chain','pdb'])
+    print(ECOD_dataframe.head())
     print(len(ECOD_dataframe))
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe.head())
+    print(len(ECOD_dataframe))
 
     return ECOD_dataframe
 
@@ -80,6 +87,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 
     return ligand_closest_chain_and_residue
 def find_ECOD(molecule,closest_chain_to_ligand,ECOD_dataframe):
+
     return None
 
 print('ECOD Dataframe Preprocessing')
