@@ -5,6 +5,7 @@ from collections import Counter
 import tempfile
 import os
 import pandas as pd
+pd.set_option('display.max_columns', None)
 
 dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
 ECOD_dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/ECOD/ecod.develop291.domains.txt'
