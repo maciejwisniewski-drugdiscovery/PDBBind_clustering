@@ -19,8 +19,11 @@ ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
 def preprocess_ECOD_df(ECOD_dataframe):
 
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
-    ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[1])
-    print(ECOD_dataframe)
+    ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
+    ECOD_dataframe.explode(columns=['pdb_range'])
+    ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
+    a = ECOD_dataframe[~ECOD_dataframe['pdb_range'].str.contains(':')]
+
     return ECOD_dataframe
 
 def mol2_to_biopython_structure(mol2_file):
@@ -73,13 +76,13 @@ print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
 
-for index,row in dataframe.iterrows():
+#for index,row in dataframe.iterrows():
 
-    molecule = row['pdbid']
-    print(molecule)
-    protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
-    ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
-    ligand_closest_chain, ligand_closest_residue_id = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
-    dataframe.at[index,'closest_chain_to_ligand'] = ligand_closest_chain
-    dataframe.at[index,'closest_chain_residue_to_ligand'] = ligand_closest_residue_id
+#    molecule = row['pdbid']
+#    print(molecule)
+#    protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
+#    ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
+#    ligand_closest_chain, ligand_closest_residue_id = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
+#    dataframe.at[index,'closest_chain_to_ligand'] = ligand_closest_chain
+#    dataframe.at[index,'closest_chain_residue_to_ligand'] = ligand_closest_residue_id
 
