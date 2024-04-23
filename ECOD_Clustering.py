@@ -99,7 +99,7 @@ def check_range(range_tuple, x):
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     option = option[option['chain'].str.contains(ligand_closest_chain)]
-    option = option[option['pdb_range'].apply(lambda r: check_range(r, x))]
+    option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
 
     print(option)
 
