@@ -8,6 +8,8 @@ import pandas as pd
 pd.set_option('display.max_columns', None)
 
 dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
+output_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/ecod_LP_PDBBind.csv'
+
 ECOD_dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/ECOD/ecod.develop291.domains.txt'
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/lp'
 
@@ -135,6 +137,8 @@ for index,row in dataframe.iterrows():
     dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
     dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
     dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
+
+dataframe.to_csv(output_filepath)
 
 
 
