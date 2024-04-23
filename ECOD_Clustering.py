@@ -134,7 +134,6 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
-dataframe = dataframe[dataframe['pdbid']=='4b73']
 
 for index,row in dataframe.iterrows():
     print(index,'/',len(dataframe))
@@ -150,23 +149,23 @@ for index,row in dataframe.iterrows():
             print('elo1')
             cluster_1, cluster_2, cluster_3, cluster_4, cluster_5 = find_ECOD(molecule, ligand_closest_chain,
                                                                               ligand_closest_residue_id,ECOD_dataframe)
-            #dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
-            #dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
+            dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
+            dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
             print('elo5')
             print(cluster_1)
             print(cluster_2)
             print(cluster_3)
             print(cluster_4)
             print(cluster_5)
-            #dataframe.at[index,'ECOD_Cluster_1'] = cluster_1
-            #dataframe.at[index,'ECOD_Cluster_2'] = cluster_2
-            #dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
-            #dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
-            #dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
+            dataframe.at[index,'ECOD_Cluster_1'] = cluster_1
+            dataframe.at[index,'ECOD_Cluster_2'] = cluster_2
+            dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
+            dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
+            dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
             break
         except Exception as e:
             print(e)
-#dataframe.to_csv(output_filepath)
+dataframe.to_csv(output_filepath)
 
 
 
