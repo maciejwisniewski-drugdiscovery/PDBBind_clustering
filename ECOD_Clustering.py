@@ -25,7 +25,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe =ECOD_dataframe.explode(column=['pdb_range'])
 
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':'))
-    ECOD_dataframe = ECOD_dataframe[len(ECOD_dataframe['pdb_range']) != 2]
+    ECOD_dataframe = ECOD_dataframe[ECOD_dataframe['pdb_range'].apply(lambda x: len(x) != 2)]]
     print(ECOD_dataframe.head())
 
     return ECOD_dataframe
