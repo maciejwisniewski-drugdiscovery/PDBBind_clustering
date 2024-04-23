@@ -48,12 +48,18 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
         atom_closest_chains = [str(closest_atom.get_parent().get_parent())[-2] for closest_atom in closest_atoms]
         count_atom_closest_chains = Counter(atom_closest_chains)
         atom_closest_chain = count_atom_closest_chains.most_common(1)[0][0]
-        print(atom_closest_chain)
+        ligand_closest_chains.append(atom_closest_chain)
+
+    count_ligand_closest_chains = Counter(ligand_closest_chains)
+    ligand_closest_chain = count_ligand_closest_chains.most_common(1)[0][0]
+    print(ligand_closest_chain)
+
 
 dataframe = dataframe[:1]
 for index,row in dataframe.iterrows():
 
     molecule = row['pdbid']
+    print(molecule)
     protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
     ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
     find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
