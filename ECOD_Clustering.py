@@ -113,5 +113,6 @@ for index,row in dataframe.iterrows():
     ligand_closest_chain, ligand_closest_residue_id = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
     dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
     dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
+    print(ligand_closest_chain, ligand_closest_residue_id)
     find_ECOD(molecule, ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe)
 
