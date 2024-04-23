@@ -107,7 +107,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 
     print(ligand_closest_chains_and_residues)
 
-    return ligand_closest_chain_and_residue
+    return ligand_closest_chains_and_residues
 def check_range(range_tuple, x):
     return range_tuple[0] <= x <= range_tuple[-1]
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
@@ -146,24 +146,30 @@ for index,row in dataframe.iterrows():
     print(molecule)
     protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
     ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
-    ligand_closest_chain, ligand_closest_residue_id = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
-    dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
-    dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
-    print(ligand_closest_chain, ligand_closest_residue_id)
-    cluster_1, cluster_2, cluster_3, cluster_4, cluster_5 = find_ECOD(molecule, ligand_closest_chain,
-                                                                      ligand_closest_residue_id,ECOD_dataframe)
-    print(cluster_1)
-    print(cluster_2)
-    print(cluster_3)
-    print(cluster_4)
-    print(cluster_5)
-    dataframe.at[index,'ECOD_Cluster_1'] = cluster_1
-    dataframe.at[index,'ECOD_Cluster_2'] = cluster_2
-    dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
-    dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
-    dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
-
-dataframe.to_csv(output_filepath)
+    ligand_closest_chains_and_residues = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
+    for ligand_closest_chain_and_residue in ligand_closest_chains_and_residues:
+        try:
+            ligand_closest_chain,ligand_closest_residue_id = ligand_closest_chain_and_residue
+            print(ligand_closest_chain, ligand_closest_residue_id)
+            cluster_1, cluster_2, cluster_3, cluster_4, cluster_5 = find_ECOD(molecule, ligand_closest_chain,
+                                                                              ligand_closest_residue_id,ECOD_dataframe)
+            dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
+            dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
+            print(ligand_closest_chain, ligand_closest_residue_id)
+            print(cluster_1)
+            print(cluster_2)
+            print(cluster_3)
+            print(cluster_4)
+            print(cluster_5)
+            dataframe.at[index,'ECOD_Cluster_1'] = cluster_1
+            dataframe.at[index,'ECOD_Cluster_2'] = cluster_2
+            dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
+            dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
+            dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
+            break
+        except Exception as e:
+            print(e)
+#dataframe.to_csv(output_filepath)
 
 
 
