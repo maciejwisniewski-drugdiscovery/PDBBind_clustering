@@ -98,15 +98,16 @@ def check_range(range_tuple, x):
     return range_tuple[0] <= x <= range_tuple[1]
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
+    print(option)
     option = option[option['chain'].str.contains(ligand_closest_chain)]
+    print(option)
     option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
-
     print(option)
 
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
-
+dataframe[:1]
 for index,row in dataframe.iterrows():
 
     molecule = row['pdbid']
