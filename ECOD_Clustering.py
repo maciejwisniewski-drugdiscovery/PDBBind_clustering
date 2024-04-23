@@ -7,7 +7,7 @@ import os
 import pandas as pd
 
 dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
-ECOD_dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/ECOD/ecod.develop291.domains.txt'
+ECOD_dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/ECOD/ecod.develop291.domains.txt'
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/lp'
 
 dataframe = pd.read_csv(dataframe_filepath)
