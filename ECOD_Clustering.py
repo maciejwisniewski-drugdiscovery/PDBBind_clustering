@@ -20,7 +20,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
 
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
-    ECOD_dataframe.explode(columns=['pdb_range'])
+    ECOD_dataframe.explode(column=['pdb_range'])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     a = ECOD_dataframe[~ECOD_dataframe['pdb_range'].str.contains(':')]
 
