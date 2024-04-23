@@ -1,6 +1,7 @@
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from Bio.PDB import PDBParser, Structure, NeighborSearch
+from collections import Counter
 import tempfile
 import os
 import pandas as pd
@@ -45,7 +46,9 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
         # Znalezienie najbliższego atomu białka dla danego atomu liganda
         closest_atoms = ns.search(ligand_atom.get_coord(),4.8)
         atom_closest_chains = [str(closest_atom.get_parent().get_parent())[-2] for closest_atom in closest_atoms]
-        print(atom_closest_chains)
+        count_atom_closest_chains = Counter(atom_closest_chains)
+        atom_closest_chain = count_atom_closest_chains.most_common(1)[0][0]
+        print(atom_closest_chain)
 
 dataframe = dataframe[:1]
 for index,row in dataframe.iterrows():
