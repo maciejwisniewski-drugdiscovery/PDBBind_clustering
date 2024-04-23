@@ -7,12 +7,23 @@ import os
 import pandas as pd
 
 dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
-ECOD_dataframe_filepath = ''
+ECOD_dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/ECOD/ecod.develop291.domains.txt'
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/lp'
 
 dataframe = pd.read_csv(dataframe_filepath)
 dataframe['closest_chain_to_ligand'] = ''
+dataframe['closest_chain_residue_to_ligand'] = ''
 dataframe['ECOD'] = ''
+
+ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
+def preprocess_ECOD_df(ECOD_dataframe):
+
+    ECOD_dataframe['Cluster'] = '_'.join(ECOD_dataframe['arch_name'],
+                                           ECOD_dataframe['x_name'],
+                                           ECOD_dataframe['h_name'],
+                                           ECOD_dataframe['t_name'],
+                                           ECOD_dataframe['f_name'])
+    print(ECOD_dataframe[1]['Cluster'])
 
 def mol2_to_biopython_structure(mol2_file):
     # Wczytanie ligandu z pliku Mol2
@@ -28,7 +39,6 @@ def mol2_to_biopython_structure(mol2_file):
     # Usuwanie tymczasowego pliku
     os.unlink(temp_pdb_file)
     return pdb_struct
-
 def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     # Inicjalizacja parsera PDB
     parser = PDBParser()
@@ -56,12 +66,12 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 
     count_ligand_closest_chains = Counter(ligand_closest_chains)
     ligand_closest_chain_and_residue = count_ligand_closest_chains.most_common(1)[0][0]
-    print(ligand_closest_chain_and_residue)
-    return ligand_closest_chain_and_residue
 
-def find_ECOD(molecule,closest_chain_to_ligand):
+    return ligand_closest_chain_and_residue
+def find_ECOD(molecule,closest_chain_to_ligand,ECOD_dataframe):
     return None
 
+preprocess_ECOD_df(ECOD_dataframe)
 dataframe = dataframe[0:1]
 for index,row in dataframe.iterrows():
 
@@ -69,5 +79,6 @@ for index,row in dataframe.iterrows():
     print(molecule)
     protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
     ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
-    closest_chain_to_ligand = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
-    dataframe.at[index,'closest_chain_to_ligand'] = closest_chain_to_ligand
+    ligand_closest_chain, ligand_closest_residue_id = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
+    dataframe.at[index,'closest_chain_to_ligand'] = ligand_closest_chain
+    dataframe.at[index,'closest_chain_residue_to_ligand'] = ligand_closest_residue_id
