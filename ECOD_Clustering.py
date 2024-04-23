@@ -142,18 +142,16 @@ for index,row in dataframe.iterrows():
     for ligand_closest_chain_and_residue in ligand_closest_chains_and_residues:
         try:
             ligand_closest_chain,ligand_closest_residue_id = ligand_closest_chain_and_residue
-            print(ligand_closest_chain, ligand_closest_residue_id)
-            print('elo1')
+            print('\t',ligand_closest_chain, ligand_closest_residue_id)
             cluster_1, cluster_2, cluster_3, cluster_4, cluster_5 = find_ECOD(molecule, ligand_closest_chain,
                                                                               ligand_closest_residue_id,ECOD_dataframe)
             dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
             dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
-            print('elo5')
-            print(cluster_1)
-            print(cluster_2)
-            print(cluster_3)
-            print(cluster_4)
-            print(cluster_5)
+            print('\t',cluster_1)
+            print('\t',cluster_2)
+            print('\t',cluster_3)
+            print('\t',cluster_4)
+            print('\t',cluster_5)
             dataframe.at[index,'ECOD_Cluster_1'] = cluster_1
             dataframe.at[index,'ECOD_Cluster_2'] = cluster_2
             dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
