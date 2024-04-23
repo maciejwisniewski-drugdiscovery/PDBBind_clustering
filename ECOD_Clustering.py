@@ -26,6 +26,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
 
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':'))
     print(ECOD_dataframe.head())
+
     return ECOD_dataframe
 
 def mol2_to_biopython_structure(mol2_file):
