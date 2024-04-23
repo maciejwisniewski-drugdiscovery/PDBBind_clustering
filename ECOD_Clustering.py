@@ -31,10 +31,10 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe = ECOD_dataframe.drop_duplicates(subset=['pdb_range','chain','pdb'])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: ''.join(c for c in x if c.isdigit() or c in ['-']))
-    print(ECOD_dataframe[~ECOD_dataframe['pdb_range'].str.contains('-')])
-    #ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
-    #print(ECOD_dataframe.head())
-    #print(len(ECOD_dataframe))
+    ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['pdb_range'].str.contains('-')]
+    ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
+    print(ECOD_dataframe.head())
+    print(len(ECOD_dataframe))
 
     return ECOD_dataframe
 
