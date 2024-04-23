@@ -37,7 +37,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe.drop_duplicates(subset=['pdb_range','chain','pdb'])
     print(ECOD_dataframe.head())
     print(len(ECOD_dataframe))
-    ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: ''.join(c for c in x if c.isalnum() or c in ['-']))
+    ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: ''.join(c for c in x if c.isdigit() or c in ['-']))
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe.head())
     print(len(ECOD_dataframe))
@@ -88,7 +88,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 
     return ligand_closest_chain_and_residue
 def find_ECOD(molecule,closest_chain_to_ligand,ECOD_dataframe):
-
+    cluster = ECOD_dataframe[ECOD_dataframe['chain']]
     return None
 
 print('ECOD Dataframe Preprocessing')
