@@ -126,6 +126,7 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
                 option['t_name'].values[0],
                 option['f_name'].values[0])
     option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
+    print(option['pdb_range'])
     if len(option) == 1:
         return (option['arch_name'].values[0],
                 option['x_name'].values[0],
