@@ -18,11 +18,7 @@ dataframe['ECOD'] = ''
 ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
 def preprocess_ECOD_df(ECOD_dataframe):
 
-    ECOD_dataframe['Cluster'] = '_'.join(ECOD_dataframe['arch_name'],
-                                           ECOD_dataframe['x_name'],
-                                           ECOD_dataframe['h_name'],
-                                           ECOD_dataframe['t_name'],
-                                           ECOD_dataframe['f_name'])
+    ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: '_'.join(row), axis=1)
     print(ECOD_dataframe[1]['Cluster'])
 
 def mol2_to_biopython_structure(mol2_file):
