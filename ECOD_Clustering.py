@@ -23,7 +23,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe.explode(column=['pdb_range'])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     a = ECOD_dataframe[~ECOD_dataframe['pdb_range'].str.contains(':')]
-
+    print(a)
     return ECOD_dataframe
 
 def mol2_to_biopython_structure(mol2_file):
