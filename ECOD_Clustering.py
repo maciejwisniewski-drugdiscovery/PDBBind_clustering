@@ -19,7 +19,7 @@ ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
 def preprocess_ECOD_df(ECOD_dataframe):
 
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: '_'.join(row), axis=1)
-    print(ECOD_dataframe[1]['Cluster'])
+    print(ECOD_dataframe[1:2])
 
 def mol2_to_biopython_structure(mol2_file):
     # Wczytanie ligandu z pliku Mol2
