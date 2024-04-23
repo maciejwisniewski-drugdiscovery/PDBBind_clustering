@@ -97,7 +97,8 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     option = option[option['chain'].str.contains(ligand_closest_chain)]
-    option = option[int(ligand_closest_residue_id) in option['pdb_range']]
+    option = option[option['pdb_range'].int.contains(ligand_closest_residue_id)]
+
     print(option)
 
 print('ECOD Dataframe Preprocessing')
