@@ -95,13 +95,12 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 
     return ligand_closest_chain_and_residue
 def check_range(range_tuple, x):
-    print(range_tuple[0],range_tuple[-1])
     return range_tuple[0] <= x <= range_tuple[-1]
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     option = option[option['chain'].str.contains(ligand_closest_chain)]
     option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
-    print(option)
+    return str(option['cluster'].values[0])
 
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
@@ -117,5 +116,6 @@ for index,row in dataframe.iterrows():
     dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
     dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
     print(ligand_closest_chain, ligand_closest_residue_id)
-    find_ECOD(molecule, ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe)
+    cluster = find_ECOD(molecule, ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe)
+    print(cluster)
 
