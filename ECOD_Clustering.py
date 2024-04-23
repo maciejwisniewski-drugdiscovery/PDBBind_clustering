@@ -12,8 +12,8 @@ ECOD_dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/ECO
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/lp'
 
 dataframe = pd.read_csv(dataframe_filepath)
-dataframe['closest_chain_to_ligand'] = ''
-dataframe['closest_chain_residue_to_ligand'] = ''
+dataframe['ligand_closest_chain'] = ''
+dataframe['ligand_closest_residue_id'] = ''
 dataframe['ECOD'] = ''
 
 ECOD_dataframe = pd.read_csv(ECOD_dataframe_filepath,sep='\t')
@@ -27,6 +27,7 @@ def parse_range(s):
 
 def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range']
+    ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: x.upper())
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
@@ -93,22 +94,24 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     ligand_closest_chain_and_residue = count_ligand_closest_chains.most_common(1)[0][0]
 
     return ligand_closest_chain_and_residue
-def find_ECOD(molecule,closest_chain_to_ligand,ECOD_dataframe):
+def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdbid'].str.contains(molecule)]
-    option = ECOD_dataframe[ECOD_dataframe['chain'].str.contains(closest_chain_to_ligand)]
-    return None
+    option = option[option['chain'].str.contains(ligand_closest_chain)]
+    option = option[int(ligand_closest_residue_id) in option['pdb_range']]
+    print(option)
 
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
 
-#for index,row in dataframe.iterrows():
+for index,row in dataframe.iterrows():
 
-#    molecule = row['pdbid']
-#    print(molecule)
-#    protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
-#    ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
-#    ligand_closest_chain, ligand_closest_residue_id = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
-#    dataframe.at[index,'closest_chain_to_ligand'] = ligand_closest_chain
-#    dataframe.at[index,'closest_chain_residue_to_ligand'] = ligand_closest_residue_id
+    molecule = row['pdbid']
+    print(molecule)
+    protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
+    ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
+    ligand_closest_chain, ligand_closest_residue_id = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
+    dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
+    dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
+    find_ECOD(molecule, ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe)
 
