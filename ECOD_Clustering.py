@@ -92,11 +92,11 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
                                if closest_atom.get_parent().get_full_id()[0] == 'protein']
         count_atom_closest_chains = Counter(atom_closest_chains)
         try:
-            atom_closest_chain = count_atom_closest_chains.most_common(1)[0][0]
+            atom_closest_chain = count_atom_closest_chains.most_common(10)[0][0]
             ligand_closest_chains.append(atom_closest_chain)
         except:
             atom_closest_chain = None
-
+    print(ligand_closest_chains)
     count_ligand_closest_chains = Counter(ligand_closest_chains)
     ligand_closest_chain_and_residue = count_ligand_closest_chains.most_common(1)[0][0]
 
@@ -129,7 +129,9 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
         return ('ARCH_UNCLASSIFIED','X_UNCLASSIFIED','H_UNCLASSIFIED','T_UNCLASSIFIED','F_UNCLASSIFIED')
 
 print('ECOD Dataframe Preprocessing')
-ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
+#ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
+
+dataframe = dataframe[dataframe['pdbid']=='4b73']
 
 for index,row in dataframe.iterrows():
     print(index,'/',len(dataframe))
