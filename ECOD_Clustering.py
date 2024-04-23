@@ -57,7 +57,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     print(ligand_closest_chain)
 
 
-dataframe = dataframe[2:3]
+dataframe = dataframe[:100]
 for index,row in dataframe.iterrows():
 
     molecule = row['pdbid']
