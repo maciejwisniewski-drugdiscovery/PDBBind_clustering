@@ -115,13 +115,16 @@ def check_range(range_tuple, x):
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     if len(option) == 1:
+        print('test1')
         return (option['arch_name'].values[0],
                 option['x_name'].values[0],
                 option['h_name'].values[0],
                 option['t_name'].values[0],
                 option['f_name'].values[0])
+
     option = option[option['chain'].str.contains(ligand_closest_chain)]
     if len(option) == 1:
+        print('test2')
         return (option['arch_name'].values[0],
                 option['x_name'].values[0],
                 option['h_name'].values[0],
@@ -130,6 +133,7 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
     option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
     print(option['pdb_range'])
     if len(option) == 1:
+        print('test3')
         return (option['arch_name'].values[0],
                 option['x_name'].values[0],
                 option['h_name'].values[0],
