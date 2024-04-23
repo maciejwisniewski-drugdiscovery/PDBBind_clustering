@@ -109,13 +109,13 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
 
     return ligand_closest_chains_and_residues
 def check_range(range_tuple, x):
-    print('elo2')
-    print(range_tuple)
-    return range_tuple[0] <= x <= range_tuple[-1]
+    try:
+        return range_tuple[0] <= x <= range_tuple[-1]
+    except:
+        False
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     if len(option) == 1:
-        print('test1')
         return (option['arch_name'].values[0],
                 option['x_name'].values[0],
                 option['h_name'].values[0],
@@ -124,7 +124,6 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
 
     option = option[option['chain'].str.contains(ligand_closest_chain)]
     if len(option) == 1:
-        print('test2')
         return (option['arch_name'].values[0],
                 option['x_name'].values[0],
                 option['h_name'].values[0],
@@ -135,7 +134,6 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
     option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
     print(option['pdb_range'])
     if len(option) == 1:
-        print('test3')
         return (option['arch_name'].values[0],
                 option['x_name'].values[0],
                 option['h_name'].values[0],
