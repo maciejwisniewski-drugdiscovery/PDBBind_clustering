@@ -28,7 +28,11 @@ def parse_range(s):
 def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range']
     ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: str(x).upper())
-    ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
+    ECOD_dataframe['Cluster_1'] = ECOD_dataframe['arch_name']
+    ECOD_dataframe['Cluster_2'] = ECOD_dataframe[['arch_name','x_name']].apply(lambda row: ' - '.join(row), axis=1)
+    ECOD_dataframe['Cluster_3'] = ECOD_dataframe[['arch_name','x_name','h_name']].apply(lambda row: ' - '.join(row), axis=1)
+    ECOD_dataframe['Cluster_4'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name']].apply(lambda row: ' - '.join(row), axis=1)
+    ECOD_dataframe['Cluster_5'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
@@ -100,7 +104,12 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     option = option[option['chain'].str.contains(ligand_closest_chain)]
     option = option[option['pdb_range'].apply(lambda r: check_range(r, ligand_closest_residue_id))]
-    return str(option['cluster'].values[0])
+    return (option['Cluster_1'].values[0],
+            option['Cluster_2'].values[0],
+            option['Cluster_3'].values[0],
+            option['Cluster_4'].values[0],
+            option['Cluster_5'].values[0])
+
 
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
@@ -116,6 +125,12 @@ for index,row in dataframe.iterrows():
     dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
     dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
     print(ligand_closest_chain, ligand_closest_residue_id)
-    cluster = find_ECOD(molecule, ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe)
-    print(cluster)
+    cluster_1, cluster_2, cluster_3, cluster_4, cluster_5 = find_ECOD(molecule, ligand_closest_chain,
+                                                                      ligand_closest_residue_id,ECOD_dataframe)
+    print(cluster_1)
+    print(cluster_2)
+    print(cluster_3)
+    print(cluster_4)
+    print(cluster_5)
+
 
