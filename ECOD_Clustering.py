@@ -94,10 +94,12 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     ligand_closest_chain_and_residue = count_ligand_closest_chains.most_common(1)[0][0]
 
     return ligand_closest_chain_and_residue
+def check_range(range_tuple, x):
+    return range_tuple[0] <= x <= range_tuple[1]
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     option = option[option['chain'].str.contains(ligand_closest_chain)]
-    option = option[option['pdb_range'].int.contains(ligand_closest_residue_id)]
+    option = option[option['pdb_range'].apply(lambda r: check_range(r, x))]
 
     print(option)
 
