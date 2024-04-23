@@ -103,7 +103,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     count_ligand_closest_chains = Counter(ligand_closest_chains)
     ligand_closest_chains_and_residues = []
     for ligand_closest_chain_and_residue in count_ligand_closest_chains.most_common(5):
-        ligand_closest_chains_and_residues.append(ligand_closest_chain_and_residue[0][0])
+        ligand_closest_chains_and_residues.append(ligand_closest_chain_and_residue[0])
 
     print(ligand_closest_chains_and_residues)
 
