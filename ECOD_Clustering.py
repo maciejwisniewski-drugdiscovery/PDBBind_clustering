@@ -23,8 +23,9 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe =ECOD_dataframe.explode(column=['pdb_range'])
-    print(ECOD_dataframe.head())
+
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':'))
+    print(ECOD_dataframe.head())
     return ECOD_dataframe
 
 def mol2_to_biopython_structure(mol2_file):
