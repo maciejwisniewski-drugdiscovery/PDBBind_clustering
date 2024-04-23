@@ -107,7 +107,7 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
-dataframe[:1]
+dataframe = dataframe[0:3]
 for index,row in dataframe.iterrows():
 
     molecule = row['pdbid']
