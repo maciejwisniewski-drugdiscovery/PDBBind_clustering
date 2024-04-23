@@ -22,7 +22,7 @@ def parse_range(s):
     start, end = map(int, s.split('-'))
     return range(start, end + 1)
 def preprocess_ECOD_df(ECOD_dataframe):
-
+    ECOD_dataframe['pdb_range']
     ECOD_dataframe['Cluster'] = ECOD_dataframe[['arch_name','x_name','h_name','t_name','f_name']].apply(lambda row: ' - '.join(row), axis=1)
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
@@ -40,6 +40,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: ''.join(c for c in x if c.isdigit() or c in ['-']))
     print(ECOD_dataframe.head())
     print(len(ECOD_dataframe))
+    ECOD_dataframe = ECOD_dataframe.dropna(subset=['pdb_range'])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe.head())
     print(len(ECOD_dataframe))
