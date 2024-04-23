@@ -37,6 +37,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe.drop_duplicates(subset=['pdb_range','chain','pdb'])
     print(ECOD_dataframe.head())
     print(len(ECOD_dataframe))
+    ECOD_dataframe = ECOD_dataframe['pdb_range'].apply(lambda x: ''.join(c for c in text if c.isalnum() or c in ['-']))
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe.head())
     print(len(ECOD_dataframe))
