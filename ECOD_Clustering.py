@@ -46,7 +46,7 @@ def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
     for ligand_atom in ligand_structure.get_atoms():
         # Znalezienie najbliższego atomu białka dla danego atomu liganda
         closest_atoms = ns.search(ligand_atom.get_coord(),4.8)
-        atom_closest_chains = [(str(closest_atom.get_parent())[-2].get_parent(),closest_atom.get_parent().get_id()[1])
+        atom_closest_chains = [(str(closest_atom.get_parent().get_parent())[-2],closest_atom.get_parent().get_id()[1])
                                for closest_atom in closest_atoms
                                if closest_atom.get_parent().get_full_id()[0] == 'protein']
         print(atom_closest_chains)
