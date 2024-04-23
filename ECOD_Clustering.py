@@ -154,19 +154,19 @@ for index,row in dataframe.iterrows():
             print(ligand_closest_chain, ligand_closest_residue_id)
             cluster_1, cluster_2, cluster_3, cluster_4, cluster_5 = find_ECOD(molecule, ligand_closest_chain,
                                                                               ligand_closest_residue_id,ECOD_dataframe)
-            dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
-            dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
+            #dataframe.at[index,'ligand_closest_chain'] = ligand_closest_chain
+            #dataframe.at[index,'ligand_closest_residue_id'] = ligand_closest_residue_id
             print(ligand_closest_chain, ligand_closest_residue_id)
             print(cluster_1)
             print(cluster_2)
             print(cluster_3)
             print(cluster_4)
             print(cluster_5)
-            dataframe.at[index,'ECOD_Cluster_1'] = cluster_1
-            dataframe.at[index,'ECOD_Cluster_2'] = cluster_2
-            dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
-            dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
-            dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
+            #dataframe.at[index,'ECOD_Cluster_1'] = cluster_1
+            #dataframe.at[index,'ECOD_Cluster_2'] = cluster_2
+            #dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
+            #dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
+            #dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
             break
         except Exception as e:
             print(e)
