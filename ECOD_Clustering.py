@@ -39,16 +39,16 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
-    print(ECOD_dataframe_2)
+    print('Before regex:\n')
+    print(ECOD_dataframe[ECOD_dataframe['pdb']=='3p8n'])
     replacement_regex = r'^[A-Za-z]+:0-[0-9]+$'
-    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].replace(r'^[A-Za-z]+:-[0-9]+-[0-9]+$', replacement_regex,
-                                                                      regex=True)
+    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].replace(r'^[A-Za-z]+:-[0-9]+-[0-9]+$', replacement_regex, regex=True)
     ECOD_dataframe = pd.concat([ECOD_dataframe_1,ECOD_dataframe_2]).reset_index(drop=True)
+    print('After regex and concat:\n')
     print(ECOD_dataframe[ECOD_dataframe['pdb']=='3p8n'])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print('\n\n\n')
-    print(ECOD_dataframe)
     print('\n\n\n')
     print(len(ECOD_dataframe))
     return ECOD_dataframe
