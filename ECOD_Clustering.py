@@ -38,10 +38,10 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
-    ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^-[A-Za-z]+:[0-9]+-[0-9]+$')]
+    ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
     print(ECOD_dataframe_2)
-    replacement_regex = r'^-[A-Za-z]+:0-[0-9]+$'
-    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].replace(r'^-[A-Za-z]+:[0-9]+-[0-9]+$', replacement_regex,
+    replacement_regex = r'^[A-Za-z]+:0-[0-9]+$'
+    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].replace(r'^[A-Za-z]+:-[0-9]+-[0-9]+$', replacement_regex,
                                                                       regex=True)
     ECOD_dataframe = pd.concat([ECOD_dataframe_1,ECOD_dataframe_2]).reset_index(drop=True)
     print(ECOD_dataframe[ECOD_dataframe['pdb']=='3c84'])
