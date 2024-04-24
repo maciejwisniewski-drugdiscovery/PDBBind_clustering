@@ -49,11 +49,11 @@ def preprocess_ECOD_df(ECOD_dataframe):
 
 def mol2_to_biopython_structure(mol2_file):
     # Wczytanie ligandu z pliku Mol2
-    mol = Chem.MolFromMol2File(mol2_file)
+    mol = Chem.MolFromMol2File(mol2_file,sanitize=False)
     # Tworzenie pliku tymczasowego dla PDB
     temp_pdb_file = tempfile.NamedTemporaryFile(suffix='.pdb',delete=False).name
     # Zapisanie ligandu do pliku PDB
-    Chem.MolToPDBFile(mol,temp_pdb_file, sanitize=False)
+    Chem.MolToPDBFile(mol,temp_pdb_file)
     # Tworzenie parsera PDB
     parser = PDBParser()
     # Parsowanie danych z pliku PDB
