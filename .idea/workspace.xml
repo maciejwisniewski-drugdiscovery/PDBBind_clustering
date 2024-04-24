@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="ECOD Clustering" />
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="ECOD Clustering">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECOD_Clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECOD_Clustering.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,31 +87,7 @@
       <workItem from="1713284755864" duration="267000" />
       <workItem from="1713340687161" duration="11928000" />
       <workItem from="1713360657878" duration="29901000" />
-      <workItem from="1713857823189" duration="28465000" />
-    </task>
-    <task id="LOCAL-00171" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713883708175</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1713883708175</updated>
-    </task>
-    <task id="LOCAL-00172" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713883719572</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1713883719572</updated>
-    </task>
-    <task id="LOCAL-00173" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713883728687</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1713883728687</updated>
+      <workItem from="1713857823189" duration="29223000" />
     </task>
     <task id="LOCAL-00174" summary="ECOD Clustering">
       <option name="closed" value="true" />
@@ -478,7 +457,31 @@
       <option name="project" value="LOCAL" />
       <updated>1713951301277</updated>
     </task>
-    <option name="localTasksCounter" value="220" />
+    <task id="LOCAL-00220" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713951816304</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1713951816304</updated>
+    </task>
+    <task id="LOCAL-00221" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713951899225</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1713951899225</updated>
+    </task>
+    <task id="LOCAL-00222" summary="ECOD Clustering">
+      <option name="closed" value="true" />
+      <created>1713951908880</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1713951908880</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

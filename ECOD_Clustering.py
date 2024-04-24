@@ -31,9 +31,13 @@ def parse_range(s):
         return range(start, end + 1)
     except:
         print(s)
-def regex_replace(x):
+def regex_replace_1(x):
     pattern = r'^[A-Za-z]+:-[0-9]+-[0-9]+$'
     x = re.sub(r'^([A-Za-z]+:)-[0-9]+(-[0-9]+)$', r'\g<1>0\2', x)
+    return x
+def regex_replace_2(x):
+    pattern = r'^[A-Za-z]+:[0-9]+[A-Za-z]+-[0-9]+$'
+    x = re.sub(r'^([A-Za-z]+:-[0-9]+)[A-Za-z]+(-[0-9]+)$)',r'\g<1>\2',x)
     return x
 def chain_number_to_letter(x):
     try:
@@ -53,8 +57,13 @@ def preprocess_ECOD_df(ECOD_dataframe):
     # Zabawa z ujemnymi wartościami w PDB Range (Czemu nie ma podanych poprostu Residue ;-; moze lepiej zrobic to na pliakch pdb)
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
-    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].apply(lambda x: regex_replace(x))
+    ECOD_datframe_3 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+[A-Za-z]+-[0-9]+$')]
+
+    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].apply(lambda x: regex_replace_1(x))
+    ECOD_dataframe_3['pdb_range'] = ECOD_dataframe_3['pdb_range'].apply(lambda x: regex_replace_2(x))
+    # Połącz
     ECOD_dataframe = pd.concat([ECOD_dataframe_1,ECOD_dataframe_2]).reset_index(drop=True)
+    ECOD_dataframe = pd.concat([ECOD_dataframe,ECOD_datframe_3]).reset_index(drop=True)
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe[ECOD_dataframe['pdb']=='3mv0'])
@@ -62,8 +71,6 @@ def preprocess_ECOD_df(ECOD_dataframe):
     print('\n\n\n')
     print(len(ECOD_dataframe))
     return ECOD_dataframe
-
-
 def sdf_to_biopython_structure(sdf_file):
     # Wczytanie ligandu z pliku SDF
     try:
@@ -150,7 +157,7 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
 
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
-print(ECOD_dataframe[ECOD_dataframe['pdb']=='1ajq'])
+print(ECOD_dataframe[ECOD_dataframe['pdb']=='1zgi'])
 
 
 for index,row in dataframe.iterrows():
