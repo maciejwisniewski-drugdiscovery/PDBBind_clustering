@@ -43,11 +43,8 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
-    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe['pdb_range'].split('')
     print('\nBefore regex:\n')
     print(ECOD_dataframe_2[ECOD_dataframe_2['pdb']=='3p8n'])
-
-
     ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].apply(lambda x: regex_replace(x))
 
     print('\nAfter regex:\n')
