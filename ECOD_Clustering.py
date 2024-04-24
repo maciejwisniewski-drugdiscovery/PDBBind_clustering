@@ -36,23 +36,23 @@ def regex_replace(x):
     x = re.sub(r'^([A-Za-z]+:)-[0-9]+(-[0-9]+)$', r'\g<1>0\2', x)
     return x
 def preprocess_ECOD_df(ECOD_dataframe):
+    # zmienia Wielkosc Nazwy Łańcucha na duze litery
     ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: str(x).upper())
+    # Usuwa jakiś shit
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
-
+    # Dzielimy wiersz w zaleznosci od PDB Range
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
 
+    # Zabawa z ujemnymi wartościami w PDB Range (Czemu nie ma podanych poprostu Residue ;-; moze lepiej zrobic to na pliakch pdb)
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
     ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].apply(lambda x: regex_replace(x))
-
-    print('\nAfter regex:\n')
-    print(ECOD_dataframe_2)
-
     ECOD_dataframe = pd.concat([ECOD_dataframe_1,ECOD_dataframe_2]).reset_index(drop=True)
-
+    print(ECOD_dataframe)
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
+    print(ECOD_dataframe)
     print('\n\n\n')
     print('\n\n\n')
     print(len(ECOD_dataframe))
