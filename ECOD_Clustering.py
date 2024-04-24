@@ -38,7 +38,7 @@ def regex_replace(x):
 def chain_number_to_letter(x):
     try:
         return chr(ord('A') + int(x) - 1)
-    else:
+    except:
         return x
 def preprocess_ECOD_df(ECOD_dataframe):
     # zmienia Wielkosc Nazwy Łańcucha na duze litery
