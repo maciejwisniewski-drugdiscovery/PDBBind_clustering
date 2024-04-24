@@ -47,9 +47,13 @@ def preprocess_ECOD_df(ECOD_dataframe):
     return ECOD_dataframe
 
 
-def mol2_to_biopython_structure(mol2_file):
-    # Wczytanie ligandu z pliku Mol2
-    mol = Chem.MolFromMol2File(mol2_file,sanitize=False)
+def mol2_to_biopython_structure(sdf_file):
+    # Wczytanie ligandu z pliku SDF
+    try:
+        mol = Chem.SDMolSupplier(sdf_file)[0]
+    except:
+        mol = Chem.SDMolSupplier(sdf_file,sanitize=False)[0]
+
     # Tworzenie pliku tymczasowego dla PDB
     temp_pdb_file = tempfile.NamedTemporaryFile(suffix='.pdb',delete=False).name
     # Zapisanie ligandu do pliku PDB
@@ -131,15 +135,14 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
-dataframe = dataframe[dataframe['pdbid']=='1ksn']
 
 for index,row in dataframe.iterrows():
     print(index,'/',len(dataframe))
     molecule = row['pdbid']
     print(molecule)
     protein_pdb_file = os.path.join(datadir,'protein','pdb',molecule+'_protein.pdb')
-    ligand_mol2_file = os.path.join(datadir,'ligand','mol2',molecule+'_ligand.mol2')
-    ligand_closest_chains_and_residues = find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file)
+    ligand_sdf_file = os.path.join(datadir,'ligand','sdf',molecule+'_ligand.sdf')
+    ligand_closest_chains_and_residues = find_closest_chain_to_ligand(protein_pdb_file,ligand_sdf_file)
     for ligand_closest_chain_and_residue in ligand_closest_chains_and_residues:
         try:
             ligand_closest_chain,ligand_closest_residue_id = ligand_closest_chain_and_residue
