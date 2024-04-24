@@ -47,12 +47,13 @@ def preprocess_ECOD_df(ECOD_dataframe):
     return ECOD_dataframe
 
 
-def mol2_to_biopython_structure(sdf_file):
+def sdf_to_biopython_structure(sdf_file):
     # Wczytanie ligandu z pliku SDF
     try:
-        mol = Chem.SDMolSupplier(sdf_file)[0]
-    except:
         mol = Chem.SDMolSupplier(sdf_file,sanitize=False)[0]
+    except:
+        mol2_file = sdf_file.replace('sdf','mol2').replace('sdf','mol2')
+        mol = Chem.MolFromMol2File(mol2_file,sanitize=False)
 
     # Tworzenie pliku tymczasowego dla PDB
     temp_pdb_file = tempfile.NamedTemporaryFile(suffix='.pdb',delete=False).name
@@ -65,12 +66,12 @@ def mol2_to_biopython_structure(sdf_file):
     # Usuwanie tymczasowego pliku
     os.unlink(temp_pdb_file)
     return pdb_struct
-def find_closest_chain_to_ligand(protein_pdb_file,ligand_mol2_file):
+def find_closest_chain_to_ligand(protein_pdb_file,ligand_sdf_file):
     # Inicjalizacja parsera PDB
     parser = PDBParser()
     # Wczytanie struktur białka i ligandu
     protein_structure = parser.get_structure('protein',protein_pdb_file)
-    ligand_structure = mol2_to_biopython_structure(ligand_mol2_file)
+    ligand_structure = sdf_to_biopython_structure(ligand_sdf_file)
     # Pobranie łańcuchów białka
     protein_chains = list(protein_structure.get_chains())
     # Inicjalizacja wyszukiwania sąsiadów
