@@ -37,7 +37,7 @@ def regex_replace_1(x):
     return x
 def regex_replace_2(x):
     pattern = r'^[A-Za-z]+:[0-9]+[A-Za-z]+-[0-9]+$'
-    x = re.sub(r'^([A-Za-z]+:[0-9]+)[A-Za-z]+(-[0-9])+$',r'\1\2',x)
+    x = re.sub(r'^([A-Za-z]+:[0-9]+)[A-Za-z]+(-[0-9])+$',r'\g<1>\2',x)
     return x
 def chain_number_to_letter(x):
     try:
@@ -64,6 +64,7 @@ def preprocess_ECOD_df(ECOD_dataframe):
     # Połącz
     ECOD_dataframe = pd.concat([ECOD_dataframe_1,ECOD_dataframe_2]).reset_index(drop=True)
     ECOD_dataframe = pd.concat([ECOD_dataframe,ECOD_dataframe_3]).reset_index(drop=True)
+
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe[ECOD_dataframe['pdb']=='3mv0'])
