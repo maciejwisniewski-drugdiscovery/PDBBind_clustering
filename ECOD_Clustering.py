@@ -57,13 +57,13 @@ def preprocess_ECOD_df(ECOD_dataframe):
     # Zabawa z ujemnymi wartościami w PDB Range (Czemu nie ma podanych poprostu Residue ;-; moze lepiej zrobic to na pliakch pdb)
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
-    ECOD_datframe_3 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+[A-Za-z]+-[0-9]+$')]
+    ECOD_dataframe_3 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+[A-Za-z]+-[0-9]+$')]
 
     ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].apply(lambda x: regex_replace_1(x))
     ECOD_dataframe_3['pdb_range'] = ECOD_dataframe_3['pdb_range'].apply(lambda x: regex_replace_2(x))
     # Połącz
     ECOD_dataframe = pd.concat([ECOD_dataframe_1,ECOD_dataframe_2]).reset_index(drop=True)
-    ECOD_dataframe = pd.concat([ECOD_dataframe,ECOD_datframe_3]).reset_index(drop=True)
+    ECOD_dataframe = pd.concat([ECOD_dataframe,ECOD_dataframe_3]).reset_index(drop=True)
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print(ECOD_dataframe[ECOD_dataframe['pdb']=='3mv0'])
