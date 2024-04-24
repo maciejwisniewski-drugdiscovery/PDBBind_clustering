@@ -36,8 +36,10 @@ def regex_replace(x):
     x = re.sub(r'^([A-Za-z]+:)-[0-9]+(-[0-9]+)$', r'\g<1>0\2', x)
     return x
 def chain_number_to_letter(x):
-    return chr(ord('A') + x - 1)
-
+    try:
+        return chr(ord('A') + int(x) - 1)
+    else:
+        return x
 def preprocess_ECOD_df(ECOD_dataframe):
     # zmienia Wielkosc Nazwy Łańcucha na duze litery
 
