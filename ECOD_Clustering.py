@@ -33,7 +33,7 @@ def parse_range(s):
         print(s)
 def regex_replace(x):
     pattern = r'^[A-Za-z]+:-[0-9]+-[0-9]+$'
-    x = re.sub(r'^([A-Za-z]+:-)[0-9]+(-[0-9]+)$', r'\g<1>0\2', x)
+    x = re.sub(r'^([A-Za-z]+:)-[0-9]+(-[0-9]+)$', r'\g<1>0\2', x)
     return x
 def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: str(x).upper())
