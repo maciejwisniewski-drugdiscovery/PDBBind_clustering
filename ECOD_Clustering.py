@@ -37,13 +37,13 @@ def regex_replace(x):
     return x
 def preprocess_ECOD_df(ECOD_dataframe):
     # zmienia Wielkosc Nazwy Łańcucha na duze litery
-    ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: str(x).upper())
+
     # Usuwa jakiś shit
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     # Dzielimy wiersz w zaleznosci od PDB Range
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
-
+    ECOD_dataframe['chain'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[0])
     # Zabawa z ujemnymi wartościami w PDB Range (Czemu nie ma podanych poprostu Residue ;-; moze lepiej zrobic to na pliakch pdb)
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
