@@ -129,6 +129,11 @@ def check_range(range_tuple, x):
         False
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
+    try:
+       ligand_closest_chain = chain_number_to_letter(ligand_closest_chain)
+    except:
+        ligand_closest_chain = ligand_closest_chain
+
     if len(option) == 1:
         return (option['arch_name'].values[0],
                 option['x_name'].values[0],
@@ -184,6 +189,7 @@ for index,row in dataframe.iterrows():
             dataframe.at[index,'ECOD_Cluster_3'] = cluster_3
             dataframe.at[index,'ECOD_Cluster_4'] = cluster_4
             dataframe.at[index,'ECOD_Cluster_5'] = cluster_5
+
             break
         except Exception as e:
             print(e)
