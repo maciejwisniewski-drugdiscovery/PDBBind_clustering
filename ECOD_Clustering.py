@@ -61,9 +61,9 @@ def preprocess_ECOD_df(ECOD_dataframe):
 
     ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].apply(lambda x: regex_replace_1(x))
     ECOD_dataframe_3['pdb_range'] = ECOD_dataframe_3['pdb_range'].apply(lambda x: regex_replace_2(x))
+    print(ECOD_dataframe_3)
     # Połącz
-    ECOD_dataframe = pd.concat([ECOD_dataframe_1,ECOD_dataframe_2]).reset_index(drop=True)
-    ECOD_dataframe = pd.concat([ECOD_dataframe,ECOD_dataframe_3]).reset_index(drop=True)
+    ECOD_dataframe = pd.concat([ECOD_dataframe_1,ECOD_dataframe_2,ECOD_dataframe_3]).reset_index(drop=True)
 
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
