@@ -58,7 +58,8 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
     ECOD_dataframe_3 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+[A-Za-z]+-[0-9]+$')]
-
+    print(ECOD_dataframe_3)
+    print('\n\n\n')
     ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].apply(lambda x: regex_replace_1(x))
     ECOD_dataframe_3['pdb_range'] = ECOD_dataframe_3['pdb_range'].apply(lambda x: regex_replace_2(x))
     print(ECOD_dataframe_3)
@@ -158,7 +159,7 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
 
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
-print(ECOD_dataframe[ECOD_dataframe['pdb']=='1zgi'])
+#print(ECOD_dataframe[ECOD_dataframe['pdb']=='1zgi'])
 
 
 for index,row in dataframe.iterrows():
