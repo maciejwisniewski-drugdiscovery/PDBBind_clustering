@@ -4,6 +4,7 @@ from Bio.PDB import PDBParser, Structure, NeighborSearch
 from collections import Counter
 import tempfile
 import os
+import re
 import pandas as pd
 pd.set_option('display.max_columns', None)
 
@@ -30,7 +31,10 @@ def parse_range(s):
         return range(start, end + 1)
     except:
         print(s)
-
+def regex_replace(x):
+    pattern = r'^[A-Za-z]+:-[0-9]+-[0-9]+$'
+    x = re.sub(r'^([A-Za-z]+:-)[0-9]+(-[0-9]+)$', r'\g<1>0\2', x)
+    return x
 def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe['pdb_range']
     ECOD_dataframe['chain'] = ECOD_dataframe['chain'].apply(lambda x: str(x).upper())
@@ -39,11 +43,12 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
     ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
     ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:-[0-9]+-[0-9]+$')]
+    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe['pdb_range'].split('')
     print('\nBefore regex:\n')
     print(ECOD_dataframe_2[ECOD_dataframe_2['pdb']=='3p8n'])
 
-    replacement_regex = r'^[A-Za-z]+:0-[0-9]+$'
-    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].replace(r'^[A-Za-z]+:-[0-9]+-[0-9]+$', replacement_regex, regex=True)
+
+    ECOD_dataframe_2['pdb_range'] = ECOD_dataframe_2['pdb_range'].apply(lambda x: regex_replace(x))
 
     print('\nAfter regex:\n')
     print(ECOD_dataframe_2[ECOD_dataframe_2['pdb']=='3p8n'])
