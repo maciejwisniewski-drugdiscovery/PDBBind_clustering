@@ -37,7 +37,7 @@ def regex_replace_1(x):
     return x
 def regex_replace_2(x):
     pattern = r'^[A-Za-z]+:[0-9]+[A-Za-z]+-[0-9]+$'
-    x = re.sub(r'^([A-Za-z]+:-[0-9]+)[A-Za-z]+(-[0-9]+)$)',r'\g<1>\2',x)
+    x = re.sub(r'^([A-Za-z]+:[0-9]+)[A-Za-z]+(-[0-9]+)$)',r'\1\2',x)
     return x
 def chain_number_to_letter(x):
     try:
