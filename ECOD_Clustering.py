@@ -37,7 +37,13 @@ def preprocess_ECOD_df(ECOD_dataframe):
     ECOD_dataframe = ECOD_dataframe[~ECOD_dataframe['ecod_domain_id'].str.contains('e5j3dA3')]
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(','))
     ECOD_dataframe = ECOD_dataframe.explode(column=['pdb_range'])
-    ECOD_dataframe = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
+    ECOD_dataframe_1 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^[A-Za-z]+:[0-9]+-[0-9]+$')]
+    ECOD_dataframe_2 = ECOD_dataframe[ECOD_dataframe['pdb_range'].str.match(r'^-[A-Za-z]+:[0-9]+-[0-9]+$')]
+    replacement_regex = r'^-[A-Za-z]+:0-[0-9]+$'
+    ECOD_dataframe_2'pdb_range'] = ECOD_dataframe_2['pdb_range'].replace(r'^-[A-Za-z]+:[0-9]+-[0-9]+$', replacement_regex,
+                                                                      regex=True)
+    ECOD_dataframe - pd.concat([ECOD_dataframe_1,ECOD_dataframe_2]).reset_index(drop=True)
+    print(ECOD_dataframe[ECOD_dataframe['pdb']=='3c84']
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: x.split(':')[-1])
     ECOD_dataframe['pdb_range'] = ECOD_dataframe['pdb_range'].apply(lambda x: parse_range(x))
     print('\n\n\n')
@@ -104,8 +110,6 @@ def check_range(range_tuple, x):
         return range_tuple[0] <= x <= range_tuple[-1]
     except:
         False
-
-
 def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataframe):
     option = ECOD_dataframe[ECOD_dataframe['pdb'].str.contains(molecule)]
     if len(option) == 1:
@@ -165,7 +169,7 @@ for index,row in dataframe.iterrows():
             break
         except Exception as e:
             print(e)
-#dataframe.to_csv(output_filepath)
+dataframe.to_csv(output_filepath)
 
 
 
