@@ -53,7 +53,7 @@ def mol2_to_biopython_structure(mol2_file):
     # Tworzenie pliku tymczasowego dla PDB
     temp_pdb_file = tempfile.NamedTemporaryFile(suffix='.pdb',delete=False).name
     # Zapisanie ligandu do pliku PDB
-    Chem.MolToPDBFile(mol,temp_pdb_file)
+    Chem.MolToPDBFile(mol,temp_pdb_file, sanitize=False)
     # Tworzenie parsera PDB
     parser = PDBParser()
     # Parsowanie danych z pliku PDB
@@ -131,6 +131,7 @@ def find_ECOD(molecule,ligand_closest_chain,ligand_closest_residue_id,ECOD_dataf
 print('ECOD Dataframe Preprocessing')
 ECOD_dataframe = preprocess_ECOD_df(ECOD_dataframe)
 
+dataframe = dataframe[dataframe['pdbid']=='1ksn']
 
 for index,row in dataframe.iterrows():
     print(index,'/',len(dataframe))
@@ -160,7 +161,7 @@ for index,row in dataframe.iterrows():
             break
         except Exception as e:
             print(e)
-dataframe.to_csv(output_filepath)
+#dataframe.to_csv(output_filepath)
 
 
 
