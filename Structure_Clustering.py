@@ -6,8 +6,8 @@ from tmtools.io import get_structure, get_residue_data
 from tmtools.testing import get_pdb_path
 import os
 
-dataframe = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clusters/cdhit_protein_sequences_clusters.csv'
-dataframe = pd.read_csv(dataframe)
+dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/clusters/cdhit_protein_sequences_clusters.csv'
+dataframe = pd.read_csv(dataframe_filepath)
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/lp/protein/pdb'
 
 def calculate_TMScore():
