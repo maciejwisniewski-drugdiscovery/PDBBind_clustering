@@ -106,12 +106,13 @@ if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_cluste
             protein_type_clusters.drop(columns=['size', 'identity'],axis=1, inplace=True)
         else:
             protein_type_clusters = pd.DataFrame(columns=['identifier', 'cluster','is_representative'])
-            nowy_wiersz = {'identifier': raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]['pdbid'].values[0],
+            temp_row = {'identifier': raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]['pdbid'].values[0],
                            'cluster': protein_type,
                            'is_representative': True}
-            # Dodawanie nowego wiersza do DataFrame
-            protein_type_clusters = protein_type_clusters.append(nowy_wiersz, ignore_index=True)
+            temp_df = pd.DataFrame(temp_row, index=[0])
 
+            # Dodawanie nowego wiersza do DataFrame
+            protein_type_clusters = pd.concat([protein_type_clusters, temp_df], ignore_index=True)
         if i == 0:
             dataframe = pd.merge(raw_dataframe, protein_type_clusters, left_on='pdbid',right_on='identifier', how='left')
         if i != 0:
