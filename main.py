@@ -86,7 +86,7 @@ protein_types = raw_dataframe['ECOD_Cluster_4'].drop_duplicates().tolist()
 # Generate FASTA file for all types
 for protein_type in protein_types:
     if not os.path.exists(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta'):
-        if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4']==protein_type]) == 1:
+        if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4']==protein_type]) != 1:
             generate_proteins_fasta(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type],
                                     datadir+'/Clusters/fasta/'+protein_type.replace('/','').replace('\\','').replace(',','').replace(' ','_').replace('(','').replace(')','')
                                     +'_PDBBind_proteins_sequences.fasta')
@@ -99,8 +99,7 @@ for protein_type in protein_types:
 if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv'):
     for i, protein_type in enumerate(protein_types):
         print(protein_type)
-        print(len(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]))
-        if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]) == 1:
+        if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]) != 1:
             protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type.replace('/','').replace('\\','').replace(',','').replace(' ','_').replace('(','').replace(')','')+'_PDBBind_proteins_sequences.fasta')
             protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
             protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
