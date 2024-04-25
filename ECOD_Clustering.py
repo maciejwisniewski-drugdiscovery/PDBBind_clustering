@@ -193,6 +193,13 @@ for index,row in dataframe.iterrows():
             break
         except Exception as e:
             print(e)
+
+dataframe['ECOD_Cluster_1'] = dataframe['ECOD_Cluster_1'].fillna('ARCH_UNCLASSIFIED')
+dataframe['ECOD_Cluster_2'] = dataframe['ECOD_Cluster_2'].fillna('X_UNCLASSIFIED')
+dataframe['ECOD_Cluster_3'] = dataframe['ECOD_Cluster_3'].fillna('H_UNCLASSIFIED')
+dataframe['ECOD_Cluster_4'] = dataframe['ECOD_Cluster_4'].fillna('T_UNCLASSIFIED')
+dataframe['ECOD_Cluster_5'] = dataframe['ECOD_Cluster_5'].fillna('F_UNCLASSIFIED')
+dataframe = dataframe.sort_values(by=['ECOD_Cluster_4'])
 dataframe.to_csv(output_filepath)
 
 

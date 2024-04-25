@@ -23,14 +23,14 @@ cd_hit_directory = '/home2/faculty/mwisniewski/Software/cd-hit-v4.8.1-2019-0228/
 
 
 #  Load Raw PDBBind CSV
-raw_dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/LP_PDBBind.csv'
+raw_dataframe_filepath='/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/dataframes/ecod_LP_PDBBind.csv'
 raw_dataframe = pd.read_csv(raw_dataframe_filepath)
 raw_dataframe['seq'] = raw_dataframe['seq'].str.replace(':','')
 
 
 
 
-def generate_proteins_fasta(df, proteins_fasta_filepath,pdb_id_column='pdbid',protein_type_column='type',protein_seq_column='seq'):
+def generate_proteins_fasta(df, proteins_fasta_filepath,pdb_id_column='pdbid',protein_ecod_column='ECOD_Cluster_4',protein_seq_column='seq'):
     '''
     Generate Fasta File for specific proteins from dataframe.
     :param df: Dataframe with PDB ID, Protein_type, Sequence columns
@@ -43,7 +43,7 @@ def generate_proteins_fasta(df, proteins_fasta_filepath,pdb_id_column='pdbid',pr
     for index, row in df.iterrows():
 
         pdb_id = row[pdb_id_column]
-        description = row[protein_type_column]
+        description = row[protein_ecod_column]
         protein_sequence = row[protein_seq_column]
 
         protein_seq_record = SeqRecord(Seq(protein_sequence), id=pdb_id,description=description)
@@ -55,7 +55,6 @@ def cluster_proteins_fasta(proteins_fasta_filepath, cd_hit_directory=cd_hit_dire
     df_in = read_fasta(proteins_fasta_filepath)
     df_out, df_clstr = cdhit.set_options(c=0.95, d=0, n=5).cluster(df_in)
     return df_clstr
-
 def calculate_SMILES_similarity_matrix(smiles_list):
     # Konwertowanie SMILES na obiekty molekularne
     mols = [Chem.MolFromSmiles(smiles, sanitize=False) for smiles in smiles_list]
@@ -81,29 +80,36 @@ def calculate_SMILES_similarity_matrix(smiles_list):
 #  PIPELINE
 
 # Generate list of protein types
-protein_types = raw_dataframe['type'].drop_duplicates().tolist()
+protein_types = raw_dataframe['ECOD_Cluster_4'].drop_duplicates().tolist()
 
 # Generate FASTA file for all types
 for protein_type in protein_types:
     if not os.path.exists(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta'):
-        generate_proteins_fasta(raw_dataframe[raw_dataframe['type'] == protein_type],
-                                datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
-        print(protein_type,' - Done')
-    else:
-        print(protein_type,' - Already exists')
+        if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4']==protein_type]) == 1:
+            generate_proteins_fasta(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type],
+                                    datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
+            print(protein_type,' - Done')
+        else:
+            print(protein_type,' - Already exists')
 
 
 # CD-HiT clustering
 if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv'):
-
     for i, protein_type in enumerate(protein_types):
         print(protein_type)
-        protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
-
-        protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
-        protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
-        print(protein_type_clusters)
-        protein_type_clusters.drop(columns=['size', 'identity'],axis=1, inplace=True)
+        if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]) == 1:
+            protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
+            protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
+            protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
+            print(protein_type_clusters)
+            protein_type_clusters.drop(columns=['size', 'identity'],axis=1, inplace=True)
+        else:
+            protein_type_clusters = pd.DataFrame(columns=['identifier', 'cluster','is_representative'])
+            nowy_wiersz = {'identifier': raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]['pdbid'].values[0],
+                           'cluster': protein_type,
+                           'is_representative': True}
+            # Dodawanie nowego wiersza do DataFrame
+            protein_type_clusters = protein_type_clusters.append(nowy_wiersz, ignore_index=True)
 
         if i == 0:
             dataframe = pd.merge(raw_dataframe, protein_type_clusters, left_on='pdbid',right_on='identifier', how='left')
