@@ -53,7 +53,7 @@ def generate_proteins_fasta(df, proteins_fasta_filepath,pdb_id_column='pdbid',pr
 def cluster_proteins_fasta(proteins_fasta_filepath, cd_hit_directory=cd_hit_directory):
     cdhit = CDHIT(prog="cd-hit", path=cd_hit_directory)
     df_in = read_fasta(proteins_fasta_filepath)
-    df_out, df_clstr = cdhit.set_options(c=0.95, d=0, n=5).cluster(df_in)
+    df_out, df_clstr = cdhit.set_options(c=0.90, d=0, n=5).cluster(df_in)
     print(df_clstr)
     return df_clstr
 def calculate_SMILES_similarity_matrix(smiles_list):
@@ -101,7 +101,11 @@ if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_cluste
         print(protein_type)
         if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]) != 1:
             protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type.replace('/','').replace('\\','').replace(',','').replace(' ','_').replace('(','').replace(')','')+'_PDBBind_proteins_sequences.fasta')
-            protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
+            try:
+                protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
+            except:
+                protein_type_clusters['cluster'] = protein_type
+
             protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
             print(protein_type_clusters)
             protein_type_clusters.drop(columns=['size', 'identity'],axis=1, inplace=True)
