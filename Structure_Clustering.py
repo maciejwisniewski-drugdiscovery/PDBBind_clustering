@@ -18,7 +18,7 @@ def calculate_TMScore():
 tm_score_matrix = np.zeros((len(dataframe), len(dataframe)))
 
 for index, rows in dataframe.iterrows():
-    protein_1_filepath = os.path.join(datadir,rows['pdbid']+'_protein.pdb')
+    protein_1_filepath = os.path.join(datadir,rows['pdbid']+'_protein')
     protein_1 = get_structure(get_pdb_path(protein_1_filepath))
     chain = next(protein_1.get_chains())
     print(chain)
