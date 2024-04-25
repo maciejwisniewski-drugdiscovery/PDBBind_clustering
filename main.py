@@ -87,7 +87,7 @@ for protein_type in protein_types:
     if not os.path.exists(datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta'):
         if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4']==protein_type]) == 1:
             generate_proteins_fasta(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type],
-                                    datadir+'/Clusters/fasta/'+protein_type+'_PDBBind_proteins_sequences.fasta')
+                                    datadir+'/Clusters/fasta/'+protein_type.replace('\\','').replace(',','').replace(' ','_')+'_PDBBind_proteins_sequences.fasta')
             print(protein_type,' - Done')
         else:
             print(protein_type,' - Already exists')
