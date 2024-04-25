@@ -26,7 +26,7 @@ for index, rows in dataframe.iterrows():
     print(chain)
     for index_2, rows_2 in dataframe[:index+1].iterrows():
 
-        protein_2_filepath = os.path.join(datadir, rows_2['pdbid'] + '_protein.pdb')
+        protein_2_filepath = os.path.join(datadir, rows_2['pdbid'] + '_protein')
         protein_2 = get_structure(get_pdb_path(protein_2_filepath))
 
         chain = next(protein_2.get_chains())
