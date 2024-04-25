@@ -19,3 +19,4 @@ tm_score_matrix = np.zeros((len(dataframe), len(dataframe)))
 
 for index, rows in dataframe.iterrows():
     for index_2, rows_2 in dataframe[:index].iterrows():
+
