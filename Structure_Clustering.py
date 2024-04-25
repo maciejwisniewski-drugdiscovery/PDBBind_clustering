@@ -35,8 +35,8 @@ for index, rows in dataframe.iterrows():
         tm_score_matrix[index,index_2] = res.tm_norm_chain1
         tm_score_matrix[index_2,index] = res.tm_norm_chain2
 
-tm_score_tensor = torch.from_numpy(tm_score_matrix)
-torch.save(tm_score_tensor, datadir+'/Clusters/matrices/TMScore_PDBBind_protein_structure_score_matrix.pt')
+
+np.save(datadir+'/Clusters/matrices/TMScore_PDBBind_protein_structure_score_matrix.npy', tm_score_matrix)
 
 
 
