@@ -56,23 +56,6 @@ def cluster_proteins_fasta(proteins_fasta_filepath, cd_hit_directory=cd_hit_dire
     df_out, df_clstr = cdhit.set_options(c=0.90, d=0, n=5).cluster(df_in)
     print(df_clstr)
     return df_clstr
-def calculate_SMILES_similarity_matrix(smiles_list):
-    # Konwertowanie SMILES na obiekty molekularne
-    mols = [Chem.MolFromSmiles(smiles, sanitize=False) for smiles in smiles_list]
-    print(mols)
-
-    # Tworzenie fingerprintów Tanimoto
-    rdkit_gen = rdFingerprintGenerator.GetRDKitFPGenerator(maxPath=7)
-    fgrps = [rdkit_gen.GetFingerprint(mol) for mol in mols]
-
-    similarities = np.zeros((len(fgrps), len(fgrps)))
-    for i in range(1, len(fgrps)):
-        print(i)
-        similarity = BulkTanimotoSimilarity(fgrps[i], fgrps[:i])
-        similarities[i, :i] = similarity
-        similarities[:i, i] = similarity
-
-    return similarities
 
 
 
@@ -93,7 +76,6 @@ for protein_type in protein_types:
             print(protein_type,' - Done')
         else:
             print(protein_type,' - Already exists')
-
 
 # CD-HiT clustering
 if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv'):
@@ -130,6 +112,7 @@ if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_cluste
             dataframe.rename(columns={'cluster_x': 'cluster'}, inplace=True)
             dataframe.rename(columns={'is_representative_x': 'is_representative'}, inplace=True)
 
+    dataframe = dataframe.rename(columns={'cluster': 'cdhit_ecod_cluster'})
     dataframe.drop(columns=['Unnamed: 0.2', 'Unnamed: 0.1', 'Unnamed: 0','identifier'],axis=1,inplace=True)
     print(dataframe.columns)
 
@@ -162,8 +145,8 @@ else:
 # Generate HeatMap
 if not os.path.exists(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequences_distance_heatmap.png'):
 
-    categories = dataframe['type'].unique()
-    divisions = [0] + list(dataframe.groupby('type').size().cumsum())
+    categories = dataframe['ECOD_Cluster_4'].unique()
+    divisions = [0] + list(dataframe.groupby('ECOD_Cluster_4').size().cumsum())
     print(divisions)
 
     print('Heat Map Creation')
@@ -174,6 +157,10 @@ if not os.path.exists(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequenc
     plt.xticks(np.array(divisions[:-1]) + np.diff(divisions), categories, rotation=45,fontsize=8)
     plt.yticks(np.array(divisions[:-1]) + np.diff(divisions), categories, fontsize=8)
 
+    for div in divisions[1:]:
+        plt.hlines(div - 0.5, xmin=-0.5, xmax=9.5, colors='white', linewidth=2)
+        plt.vlines(div - 0.5, ymin=-0.5, ymax=9.5, colors='white', linewidth=2)
+
     plt.title('Distance Matrix of Protein Sequences in PDBBind (Clustal Omega)')
     plt.xlabel('Proteins')
     plt.ylabel('Proteins')
@@ -181,33 +168,3 @@ if not os.path.exists(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequenc
 
     plt.savefig(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequences_distance_heatmap.png')
 
-# Smiles Similarity Map
-if not os.path.exists(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.pt'):
-    smiles_list = dataframe['smiles'].tolist()
-    numpy_tanimoto_matrix = calculate_SMILES_similarity_matrix(smiles_list)
-    torch_tanimoto_tensor = torch.from_numpy(numpy_tanimoto_matrix)
-    torch.save(torch_tanimoto_tensor, datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.pt')
-else:
-    torch_tanimoto_tensor = torch.load(datadir+'/Clusters/matrices/Tanimoto_PDBBind_ligand_SMILES_similarity_matrix.pt')
-
-# Generate Tanimoto HeatMap
-if not os.path.exists(datadir+'/Clusters/images/Tanimoto_PDBBind_ligand_SMILES_similarity_heatmap.png'):
-
-    categories = dataframe['type'].unique()
-    divisions = [0] + list(dataframe.groupby('type').size().cumsum())
-    print(divisions)
-
-    print('Heat Map Creation')
-
-    plt.figure(figsize=(14, 12))
-    plt.imshow(torch_tanimoto_tensor, cmap='gist_ncar', interpolation='nearest')
-
-    plt.xticks(np.array(divisions[:-1]) + np.diff(divisions), categories, rotation=45,fontsize=8)
-    plt.yticks(np.array(divisions[:-1]) + np.diff(divisions), categories, fontsize=8)
-
-    plt.title('Similarity Matrix of Ligand SMILES in PDBBind (Tanimoto FingerPrints)')
-    plt.xlabel('Ligands')
-    plt.ylabel('Ligands')
-    plt.colorbar()
-
-    plt.savefig(datadir+'/Clusters/images/Tanimoto_PDBBind_ligand_SMILES_similarity_heatmap.png')
