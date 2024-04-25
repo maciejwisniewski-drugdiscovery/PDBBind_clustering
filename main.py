@@ -158,8 +158,8 @@ if not os.path.exists(datadir+'/Clusters/images/ClustalO_PDBBind_protein_sequenc
     plt.yticks(np.array(divisions[:-1]) + np.diff(divisions), categories, fontsize=8)
 
     for div in divisions[1:]:
-        plt.hlines(div - 0.5, xmin=-0.5, xmax=9.5, colors='white', linewidth=2)
-        plt.vlines(div - 0.5, ymin=-0.5, ymax=9.5, colors='white', linewidth=2)
+        plt.hlines(div - 0.5, xmin=0, xmax=len(dataframe), colors='white', linewidth=1)
+        plt.vlines(div - 0.5, ymin=0, ymax=len(dataframe), colors='white', linewidth=1)
 
     plt.title('Distance Matrix of Protein Sequences in PDBBind (Clustal Omega)')
     plt.xlabel('Proteins')
