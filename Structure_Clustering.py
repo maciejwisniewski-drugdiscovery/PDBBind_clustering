@@ -20,13 +20,15 @@ tm_score_matrix = np.zeros((len(dataframe), len(dataframe)))
 for index, rows in dataframe.iterrows():
     protein_1_filepath = os.path.join(datadir,rows['pdbid']+'_protein.pdb')
     protein_1 = get_structure(get_pdb_path(protein_1_filepath))
-    chain = next(s.get_chains())
-    chain = next(s.get_chains())
+    chain = next(protein_1.get_chains())
+    print(chain)
+    chain = next(protein_1.get_chains())
+    print(chain)
     for index_2, rows_2 in dataframe[:index+1].iterrows():
 
         protein_2_filepath = os.path.join(datadir, rows_2['pdbid'] + '_protein.pdb')
         protein_2 = get_structure(get_pdb_path(protein_2_filepath))
 
-        chain = next(s.get_chains())
+        chain = next(protein_2.get_chains())
 
 
