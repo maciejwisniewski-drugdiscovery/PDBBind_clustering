@@ -18,20 +18,22 @@ def calculate_TMScore():
 tm_score_matrix = np.zeros((len(dataframe), len(dataframe)))
 
 for index, rows in dataframe.iterrows():
-    print(index)
     protein_1_filepath = os.path.join(datadir,rows['pdbid']+'_protein')
     protein_1 = get_structure(get_pdb_path(protein_1_filepath))
-    chain = next(protein_1.get_chains())
-    print(chain)
-    chain = next(protein_1.get_chains())
-    print(chain)
+    chain_1 = next(protein_1.get_chains())
+    coords_1, seq_1 = get_residue_data(chain_1)
 
     for index_2, rows_2 in dataframe[:index+1].iterrows():
-        print(index_2)
+        print(index,'--',index_2)
 
         protein_2_filepath = os.path.join(datadir, rows_2['pdbid'] + '_protein')
         protein_2 = get_structure(get_pdb_path(protein_2_filepath))
+        chain_2 = next(protein_2.get_chains())
+        coords_2, seq_2 = get_residue_data(chain_2)
 
-        chain = next(protein_2.get_chains())
+        res = tm_align(coords_1, coords_2, seq_1, seq_2)
+        print(res.tm_norm_chain1)
+        print(res.tm_norm_chain2)
+
 
 
