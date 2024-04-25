@@ -99,7 +99,7 @@ if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_cluste
     for i, protein_type in enumerate(protein_types):
         print(protein_type)
         if len(raw_dataframe[raw_dataframe['ECOD_Cluster_4'] == protein_type]) == 1:
-            protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type.replace('\\','').replace(',','').replace(' ','_')+'_PDBBind_proteins_sequences.fasta')
+            protein_type_clusters = cluster_proteins_fasta(datadir+'/Clusters/fasta/'+protein_type.replace('/','').replace('\\','').replace(',','').replace(' ','_').replace('(','').replace(')','')+'_PDBBind_proteins_sequences.fasta')
             protein_type_clusters['cluster'] = protein_type_clusters['cluster'].apply(lambda x: protein_type + '_' + str(x))
             protein_type_clusters['identifier'] = protein_type_clusters['identifier'].apply(lambda x: x.split(' ')[0])
             print(protein_type_clusters)
