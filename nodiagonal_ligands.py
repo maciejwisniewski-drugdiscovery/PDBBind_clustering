@@ -18,18 +18,16 @@ df = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clust
 df = pd.read_csv(df)
 
 def smiles_to_fp(smiles):
-    mol = Chem.MolFromSmiles(smiles, sanitize=False)
+    mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         return None
     return AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024)
 
-def ligand_clustering():
-    return None
 
 
 df['Fingerprint'] = df['smiles'].apply(smiles_to_fp)
-#df = df.dropna(subset=['Fingerprint'])
-#print(df)
+df = df.dropna(subset=['Fingerprint'])
+print(df)
 
 sys.exit()
 similarities = []
