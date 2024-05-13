@@ -10,11 +10,6 @@ dataframe_filepath = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_
 dataframe = pd.read_csv(dataframe_filepath)
 datadir = '/mnt/evafs/groups/sfglab/mwisniewski/PhD/data/lp/protein/pdb'
 
-def calculate_TMScore():
-    return None
-
-
-
 tm_score_matrix = np.zeros((len(dataframe), len(dataframe)))
 
 for index, rows in dataframe.iterrows():
