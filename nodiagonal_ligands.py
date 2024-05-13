@@ -18,7 +18,7 @@ df = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clust
 df = pd.read_csv(df)
 
 def smiles_to_fp(smiles):
-    mol = Chem.MolFromSmiles(smiles)
+    mol = Chem.MolFromSmiles(smiles, sanitize=False)
     if mol is None:
         return None
     return AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024)
