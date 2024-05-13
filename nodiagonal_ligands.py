@@ -54,7 +54,6 @@ if not os.path.exists(simi_np_file):
     np.save('/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/matrices/ligand_similarities.npy', similarity_matrix)
 else:
     similarity_df = pd.read_csv(simi_file)
-    similarity_matrix = np.load(simi_np_file)
     similarity_df = similarity_df.fillna(0)
     for index in similarity_df.index:
         similarity_df.at[index,'index']=float(1)
