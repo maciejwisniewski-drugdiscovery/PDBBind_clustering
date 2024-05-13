@@ -53,22 +53,24 @@ if not os.path.exists(simi_np_file):
     similarity_matrix = similarity_df.to_numpy()
     np.save('/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/matrices/ligand_similarities.npy', similarity_matrix)
 else:
+    print('Load Matrix')
     similarity_df = pd.read_csv(simi_file)
+    print('Replace NaNs')
     similarity_df = similarity_df.fillna(0)
     for index in similarity_df.index:
-        similarity_df.at[index,'index']=float(1)
+        similarity_df.at[index,str(index)]=float(1)
 
 print(similarity_df)
-sys.exit()
 # Which out
 
 ligand_similarity_dict = {}
 ligand_similarity_dict_2 = {}
 
 for i, row in df.iterrows():
+    print(i)
     temp_cluster_df = df
     temp_indices = temp_cluster_df.index.tolist()
-    temp_matrix = matrix.loc[temp_indices]
+    temp_matrix = similarity_df.loc[temp_indices]
     all = temp_matrix[str(i)]
     not_all = all[all>0.95]
     similar_ligands_indices = not_all.index.tolist()
