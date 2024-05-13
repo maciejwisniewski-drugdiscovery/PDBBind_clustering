@@ -68,7 +68,7 @@ ligand_similarity_dict_2 = {}
 
 for i, row in df.iterrows():
     print(i)
-    temp_cluster_df = df
+    temp_cluster_df = df[df['pdbid'] != row['pdbid']]
     temp_indices = temp_cluster_df.index.tolist()
     temp_matrix = similarity_df.loc[temp_indices]
     all = temp_matrix[str(i)]
