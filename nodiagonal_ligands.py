@@ -28,7 +28,6 @@ def smiles_to_fp(smiles):
 df['Fingerprint'] = df['smiles'].apply(smiles_to_fp)
 
 
-sys.exit()
 similarities = []
 for i in range(len(df)):
     print(i)
