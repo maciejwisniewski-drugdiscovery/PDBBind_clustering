@@ -18,7 +18,7 @@ df = '/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clust
 df = pd.read_csv(df)
 
 def smiles_to_fp(smiles):
-    mol = Chem.MolFromSmiles(smiles,sanitize=False)
+    mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         return None
     return AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024)
@@ -26,14 +26,19 @@ def smiles_to_fp(smiles):
 
 
 df['Fingerprint'] = df['smiles'].apply(smiles_to_fp)
-df = df.dropna(subset=['Fingerprint'])
-print(df)
+
 
 sys.exit()
 similarities = []
 for i in range(len(df)):
     print(i)
-    sims = [DataStructs.TanimotoSimilarity(df['Fingerprint'][i], df['Fingerprint'][j]) for j in range(len(df))]
+    sims=[]
+    for j in range(len(df)):
+        if df['Fingerprint'][i] is not None and df['Fingerprint'][j] is not None:
+            sim = DataStructs.TanimotoSimilarity(df['Fingerprint'][i], df['Fingerprint'][j])
+        else:
+            sim = None
+        sims.appned(sim)
     similarities.append(sims)
 
 print(similarity_df)
