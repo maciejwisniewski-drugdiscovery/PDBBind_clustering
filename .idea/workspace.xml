@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="Structure Clustering">
-      <change afterPath="$PROJECT_DIR$/nodiagonal_ligands.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="Structure Clustering" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,39 +99,7 @@
       <workItem from="1715005333647" duration="3029000" />
       <workItem from="1715344232570" duration="1300000" />
       <workItem from="1715585602639" duration="457000" />
-      <workItem from="1715586470684" duration="1511000" />
-    </task>
-    <task id="LOCAL-00217" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713950891814</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
-      <option name="project" value="LOCAL" />
-      <updated>1713950891814</updated>
-    </task>
-    <task id="LOCAL-00218" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713951152533</created>
-      <option name="number" value="00218" />
-      <option name="presentableId" value="LOCAL-00218" />
-      <option name="project" value="LOCAL" />
-      <updated>1713951152533</updated>
-    </task>
-    <task id="LOCAL-00219" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713951301277</created>
-      <option name="number" value="00219" />
-      <option name="presentableId" value="LOCAL-00219" />
-      <option name="project" value="LOCAL" />
-      <updated>1713951301277</updated>
-    </task>
-    <task id="LOCAL-00220" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713951816304</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
-      <option name="project" value="LOCAL" />
-      <updated>1713951816304</updated>
+      <workItem from="1715586470684" duration="1829000" />
     </task>
     <task id="LOCAL-00221" summary="ECOD Clustering">
       <option name="closed" value="true" />
@@ -496,7 +461,39 @@
       <option name="project" value="LOCAL" />
       <updated>1715586911170</updated>
     </task>
-    <option name="localTasksCounter" value="266" />
+    <task id="LOCAL-00266" summary="Structure Clustering">
+      <option name="closed" value="true" />
+      <created>1715588049610</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1715588049610</updated>
+    </task>
+    <task id="LOCAL-00267" summary="Structure Clustering">
+      <option name="closed" value="true" />
+      <created>1715588094738</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1715588094738</updated>
+    </task>
+    <task id="LOCAL-00268" summary="Structure Clustering">
+      <option name="closed" value="true" />
+      <created>1715588138194</created>
+      <option name="number" value="00268" />
+      <option name="presentableId" value="LOCAL-00268" />
+      <option name="project" value="LOCAL" />
+      <updated>1715588138194</updated>
+    </task>
+    <task id="LOCAL-00269" summary="Structure Clustering">
+      <option name="closed" value="true" />
+      <created>1715588279741</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1715588279741</updated>
+    </task>
+    <option name="localTasksCounter" value="270" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -526,7 +523,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>37</line>
+          <line>36</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
