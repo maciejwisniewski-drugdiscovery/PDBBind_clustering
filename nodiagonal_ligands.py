@@ -27,7 +27,7 @@ def ligand_clustering():
     return None
 
 
-df['Fingerprint'] = df['SMILES'].apply(smiles_to_fp)
+df['Fingerprint'] = df['smiles'].apply(smiles_to_fp)
 similarities = []
 for i in range(len(df)):
     print(i)
