@@ -108,12 +108,13 @@ if not os.path.exists(datadir+'/Clusters/clusters/cdhit_protein_sequences_cluste
             dataframe.rename(columns={'cluster_x': 'cluster'}, inplace=True)
             dataframe.rename(columns={'is_representative_x': 'is_representative'}, inplace=True)
 
+    print(dataframe.columns)
     dataframe = dataframe.rename(columns={'cluster': 'cdhit_ecod_cluster'})
     dataframe.drop(columns=['Unnamed: 0.2', 'Unnamed: 0.1', 'Unnamed: 0','identifier'],axis=1,inplace=True)
     print(dataframe.columns)
 
     # Save Protein Sequence Clusters:
-    dataframe = dataframe.sort_values(by=['cluster']).reset_index(drop=True)
+    dataframe = dataframe.sort_values(by=['cdhit_ecod_cluster']).reset_index(drop=True)
     dataframe.to_csv(datadir+'/Clusters/clusters/cdhit_protein_sequences_clusters.csv')
     # Generate Protein Fasta File for ClustalO
     generate_proteins_fasta(dataframe,
