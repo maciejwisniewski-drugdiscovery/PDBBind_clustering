@@ -28,6 +28,10 @@ def ligand_clustering():
 
 
 df['Fingerprint'] = df['smiles'].apply(smiles_to_fp)
+df = df.dropna(subset=['Fingerprint'])
+print(df)
+
+sys.exit()
 similarities = []
 for i in range(len(df)):
     print(i)
