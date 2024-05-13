@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="Structure Clustering" />
+    <list default="true" id="e2546679-941a-44a6-a98f-6fb6c87896c6" name="Changes" comment="Structure Clustering">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodiagonal_ligands.py" beforeDir="false" afterPath="$PROJECT_DIR$/nodiagonal_ligands.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test" beforeDir="false" afterPath="$PROJECT_DIR$/test" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,23 +103,7 @@
       <workItem from="1715005333647" duration="3029000" />
       <workItem from="1715344232570" duration="1300000" />
       <workItem from="1715585602639" duration="457000" />
-      <workItem from="1715586470684" duration="2133000" />
-    </task>
-    <task id="LOCAL-00225" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713952609041</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
-      <option name="project" value="LOCAL" />
-      <updated>1713952609041</updated>
-    </task>
-    <task id="LOCAL-00226" summary="ECOD Clustering">
-      <option name="closed" value="true" />
-      <created>1713952795207</created>
-      <option name="number" value="00226" />
-      <option name="presentableId" value="LOCAL-00226" />
-      <option name="project" value="LOCAL" />
-      <updated>1713952795207</updated>
+      <workItem from="1715586470684" duration="2816000" />
     </task>
     <task id="LOCAL-00227" summary="ECOD Clustering">
       <option name="closed" value="true" />
@@ -493,7 +481,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715588595528</updated>
     </task>
-    <option name="localTasksCounter" value="274" />
+    <task id="LOCAL-00274" summary="Structure Clustering">
+      <option name="closed" value="true" />
+      <created>1715588624147</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1715588624147</updated>
+    </task>
+    <task id="LOCAL-00275" summary="Structure Clustering">
+      <option name="closed" value="true" />
+      <created>1715588645094</created>
+      <option name="number" value="00275" />
+      <option name="presentableId" value="LOCAL-00275" />
+      <option name="project" value="LOCAL" />
+      <updated>1715588645094</updated>
+    </task>
+    <option name="localTasksCounter" value="276" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
