@@ -58,10 +58,12 @@ else:
 # Which out
 
 ligand_similarity_dict = {}
-for i, pdb_id in enumerate(df['pdb_id']):
+for i, row in df.iterrows():
     similar_ligands_indices = np.where(similarity_matrix[i] > 0.95)[0]
-    similar_pdb_ids = df_pdb.loc[similar_ligands_indices, 'pdb_id'].tolist()
-    ligand_similarity_dict[pdb_id] = similar_pdb_ids
-    print(ligand_similarity_dict[pdb_id])
+    print(similar_ligand_indices)
+    df_other_clusters = df[~df['Cluster_4']==row['Cluster_4']]
+    similar_pdb_ids = df_other_clusters.loc[similar_ligands_indices, 'pdbid'].tolist()
+    ligand_similarity_dict[row['pdbid']] = similar_pdb_ids
+    print(ligand_similarity_dict[row['pdbid']])
 
 
