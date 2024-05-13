@@ -44,6 +44,7 @@ if not os.path.exists(simi_np_file):
             sims.append(sim)
         similarities.append(sims)
 
+    similarity_df = pd.DataFrame(similarities, columns=df.index, index=df.index)
     print(similarity_df)
     simi_file='/mnt/evafs/groups/sfglab/mwisniewski/ingenix/data/PDBBind_Statistics/Clusters/matrices/ligand_similarities.csv'
     similarity_df.to_csv(simi_file)
