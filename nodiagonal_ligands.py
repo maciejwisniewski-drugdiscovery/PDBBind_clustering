@@ -37,7 +37,7 @@ for i in range(len(df)):
             sim = DataStructs.TanimotoSimilarity(df['Fingerprint'][i], df['Fingerprint'][j])
         else:
             sim = None
-        sims.appned(sim)
+        sims.append(sim)
     similarities.append(sims)
 
 print(similarity_df)
